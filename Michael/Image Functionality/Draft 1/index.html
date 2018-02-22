@@ -1,0 +1,83 @@
+<html>
+<script src="https://d3js.org/d3.v4.js"></script>
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<svg height="1000" width="1000" id="graph1">
+</svg>
+<script>
+
+// First we make the scale linear such that we can change the dollars spent option
+// health into an appropriate number for our svg
+var linearHealthScale= d3.scaleLinear()
+.domain([0, 50000])
+.range([0, 5]);
+
+// Next we use a powerScale with exponent 0.5 to change the initial variable
+// such that the area is linear and correct
+var areaHealthScale= d3.scalePow().
+exponent([0.5]);
+
+// Since attr modification takes in a string, we must transform each scale value
+// into a string such that .attr("transform", to_string_scale(value)) is in
+// an acceptable format
+var to_string_scale= function(variable) {
+  return "scale(" + variable + ", " + variable + ")";
+};
+
+// Combines all functions into one
+var healthImageHelper= function(healthData) {
+  return to_string_scale(areaHealthScale(linearHealthScale(healthData)));
+};
+
+// Grabs the id of the svg element
+var svg= d3.select("#graph1");
+
+// The following is a test of the functionality of the code
+// The path rendered in the following function is a red cross
+// It is functional so it has been commented out
+
+// svg.append("path")
+// .attr("d", "M 10 0 L 20 0 20 10 30 10 30 20 20 20 20 30 10 30 10 20 0 20 0 10 10 10 Z")
+// .attr("transform", to_string_scale(areaHealthScale(linearHealthScale(25000))))
+// .style("fill", "red");
+
+// The following is an example array that we'll use to draw data from when
+// uploaded from the happiness and correlated data
+var exampleArray= [{"x": 100, "y": 100, "healthSpending": 10000},
+{"x": 300, "y": 200, "healthSpending": 20000},
+{"x": 500, "y": 100, "healthSpending": 30000},
+{"x": 800, "y": 500, "healthSpending": 40000},
+{"x": 120, "y": 600, "healthSpending": 50000},
+{"x": 220, "y": 800, "healthSpending": 60000},
+{"x": 420, "y": 300, "healthSpending": 70000},
+{"x": 620, "y": 400, "healthSpending": 80000},
+{"x": 520, "y": 800, "healthSpending": 90000},
+{"x": 720, "y": 500, "healthSpending": 100000}
+];
+
+// Transforms x and y coordinates into a translate function string input
+// so that it is compatible with a .attr call
+var to_string_x_y= function(x, y) {
+  return "translate(" + x + "," + y + ")";
+};
+
+// Concatenates the transform functions into one, else overwriting will occur
+var transformHelper= function(x, y, imageHelperUsed, dataPoint) {
+  return to_string_x_y(x, y) + " " + imageHelperUsed(dataPoint);
+};
+
+// Below is an implementation of a loop that goes through each element of an array
+// and graphs it in a way that positions the x and y and size appropriately
+var generateHealth= function(dataArray, imageHelper) {
+  dataArray.forEach(function(d) {
+    svg.append("path")
+    .attr("d", "M 10 0 L 20 0 20 10 30 10 30 20 20 20 20 30 10 30 10 20 0 20 0 10 10 10 Z")
+    .attr("transform", transformHelper(d.x, d.y, imageHelper, d.healthSpending))
+    .style("fill", "red");
+  });
+};
+
+// We will swap this example array out with another array with the actual data
+generateHealth(exampleArray, healthImageHelper);
+
+</script>
+</html>
