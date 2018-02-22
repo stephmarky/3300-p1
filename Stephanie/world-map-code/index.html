@@ -1,0 +1,101 @@
+<html>
+<head>
+<title> second try</title>
+<link href="https://fonts.googleapis.com/css?family=Barlow+Condensed" rel="stylesheet">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/default.min.css">
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script src="http://d3js.org/topojson.v2.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js"></script>
+<style>
+body { font-family: 'Barlow Condensed', Calibri, sans-serif; }
+svg { border: solid #ccc 1px; }
+path.country { fill: #ccc; stroke: #888;; }
+</style>
+</head>
+<body>
+
+
+<svg height="600" width="1000" viewbox="250 40 400 250"></svg>
+
+<script id="notes">
+
+var svg = d3.select("svg");
+
+var projection = d3.geoMercator().scale(75);
+var pathGenerator = d3.geoPath().projection(projection);
+
+var divergingColors = ["#d8b365", "#f5f5f5", "#5ab4ac"];
+var sequentialColors = ['#edf8fb','#b2e2e2','#66c2a4','#2ca25f','#006d2c'];
+
+var populationScale = d3.scaleLinear().domain([-5, 0, 5]).range(divergingColors);
+var percentScale = d3.scaleLinear().domain([0, 25, 50, 75, 100]).range(sequentialColors);
+
+var countries;
+var atlas;
+
+// function to handle any row-by-row processing on CSV
+var parseRow = function(row) {
+  return row;
+}
+
+d3.queue()
+.defer(d3.json, "world-50m.json")
+.defer(d3.csv, "Michael_data.csv", parseRow)
+.await(callback);
+
+d3.json("world-50m.json", callback);
+
+function callback (error, rawMap, rawISO) {
+  console.log("Code in the call-back function is only executed when every data file loads.");
+  
+  atlas = d3.map(rawISO, function(d) { 
+    return Number(d.ISO3166);
+  });
+
+  // what is going wrong here? ERROR: 
+  countries = topojson.feature(rawMap, rawMap.objects.countries);
+  showMap(percentScale, "Happiness");
+}
+
+function showMap(scale, variable) {
+  // Create or modify paths for each country
+  
+  projection.fitExtent([[0,0], [svg.attr("width"), svg.attr("height")]], countries);
+  pathGenerator = d3.geoPath().projection(projection);
+  
+  var paths = svg.selectAll("path.country").data(countries.features);
+  
+  paths = paths.enter().append("path").attr("class", "country")
+  .on("click", function (d) { console.log(d.id); })
+  .merge(paths);
+  
+  paths
+  .transition().duration(1000)
+  .style("fill", function (country) {
+    // Fill this in
+    // var countryData = atlas.get(country.id);
+    // if (countryData) {
+    //   return scale(countryData[variable]);
+    // }
+
+    if(country.id == 840) {
+      return "blue"
+    }
+
+  })
+  .attr("d", function (country) {
+    return pathGenerator(country);
+  });
+  
+}
+
+
+
+console.log("Code after the d3.json() call is executed immediately.");
+
+</script>
+
+
+
+</body>
+</html>
