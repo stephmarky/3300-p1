@@ -1,0 +1,105 @@
+<html>
+<head>
+<title>INFO 3300 - Data-driven Web Applications</title>
+<link href="https://fonts.googleapis.com/css?family=Barlow+Condensed" rel="stylesheet">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/default.min.css">
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script src="http://d3js.org/topojson.v2.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js"></script>
+<style>
+body { font-family: 'Barlow Condensed', Calibri, sans-serif; }
+svg { border: solid #ccc 1px; }
+path.country { fill: #ccc; stroke: #888;; }
+</style>
+</head>
+<body>
+<h3>Scatterplot-Corruption</h3>
+
+
+
+<!-- Here's an SVG element. Note that in this file it looks like the <div> above. -->
+<svg height="800" width="1000">
+  <!-- Visual elements are represented by tags, which have attributes -->
+</svg>
+
+<script id="notes">
+
+var svg = d3.select("svg");
+
+
+var rawcsvdata;
+
+
+ // var Happiness = [],
+ //     Corruption = [];
+
+d3.csv("corruption_data.csv", function(data) {
+  rawcsvdata = data;
+  rawcsvdata.forEach(function(d) {
+    //d.Happiness = Number(d.Happiness);
+    //d.Corruption = Number(d.Corruption);
+    // Happiness.push(d.Happiness);
+    // Corruption.push(d.Corruption);
+
+  });
+
+    var HapExtent = d3.extent(rawcsvdata, function (d) { return d.Happiness; });
+    
+    HapScale = d3.scaleLinear()
+    .domain(HapExtent)
+    .range([20, 770]);
+    
+    var CorExtent = d3.extent(rawcsvdata, function (d) { return d.Corruption; });
+    
+    CorScale = d3.scaleLinear()
+    .domain(CorExtent)
+    .range([30, 980]);
+    
+    // Axes in d3 are powerful. We start by creating an axis with a visual orientation
+    //  and a scale function. This returns a new function.
+    var CorAxis = d3.axisBottom(CorScale);
+    
+    // Now we append a group element to the SVG and apply our axis function
+    //  to the group.
+    // Based on the domain and range of the scale the axis knows which
+    //  pixel values to start and end at, and what values to display.
+    // It doesn't know where we want to put it vertically, so we need to
+    //  translate it into place.
+    // Use the element inspector in your browser to see how the axis is
+    // being constructed. What SVG elements is it made up of?
+    svg.append("g")
+    .attr("transform", "translate(0, 770)")
+    .call(CorAxis);
+    
+    // Calling axisLeft() tells D3 that the scale should be applied to the
+    //  vertical dimension, and that tick marks should go to the left of the 
+    //  axis line. We then just have to move it horizontally.
+    // Try commenting out the transform line to see what happens if you forget
+    //  to move it into place.
+    var HapAxis = d3.axisLeft(HapScale);
+    svg.append("g")
+    .attr("transform", "translate(30, 0)")
+    .call(HapAxis);
+
+
+    rawcsvdata.forEach(function (d) {
+      svg.append("circle")
+      .attr("cx", CorScale(d.Corruption))
+      .attr("cy", HapScale(d.Happiness))
+      .attr("r", 3)
+    });
+
+});
+
+//console.log(Happiness);
+//rawcsvdata = rawcsvdata.filter(function (d) { return d.Happiness && d.Corruption; });
+
+
+
+
+
+
+</script>
+
+</body>
+</html>

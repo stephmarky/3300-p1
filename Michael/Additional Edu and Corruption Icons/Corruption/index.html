@@ -1,0 +1,165 @@
+<html>
+<script src="https://d3js.org/d3.v4.js"></script>
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<svg height="1000" width="1000" id="graph2">
+</svg>
+<script>
+
+// COPY PASTED and EDITED
+
+var linearEduScale= d3.scaleLinear()
+.domain([0, 20])
+.range([0, 5]);
+
+// Next we use a powerScale with exponent 0.5 to change the initial variable
+// such that the area is linear and correct
+var areaEduScale= d3.scalePow().
+exponent([0.5]);
+
+// Since attr modification takes in a string, we must transform each scale value
+// into a string such that .attr("transform", to_string_scale(value)) is in
+// an acceptable format
+var to_string_scale= function(variable) {
+  return "scale(" + variable + ", " + variable + ")";
+};
+
+// Combines all functions into one
+var eduImageHelper= function(healthData) {
+  return to_string_scale(areaEduScale(linearEduScale(healthData)));
+};
+
+// Transforms x and y coordinates into a translate function string input
+// so that it is compatible with a .attr call
+var to_string_x_y= function(x, y) {
+  return "translate(" + x + "," + y + ")";
+};
+
+// Concatenates the transform functions into one, else overwriting will occur
+var transformHelper= function(x, y, imageHelperUsed, dataPoint) {
+  return to_string_x_y(x, y) + " " + imageHelperUsed(dataPoint);
+};
+
+
+// Select svg2
+var svg2= d3.select("#graph2");
+
+var imageGenerator= function (d) {
+
+  var image= svg2.append("g")
+  .attr("transform", transformHelper(d.x, d.y, eduImageHelper, d.size));
+
+  // failed attempt to center
+
+  // .attr("transform", transformHelper(d.x - areaEduScale(linearEduScale((d.size))),
+  // d.y - areaEduScale(linearEduScale((d.size))),
+  // eduImageHelper, d.size));
+
+  image.append("line")
+  .style("stroke", "gray")
+  .style("stroke-width", "1")
+  .attr("x1", 21)
+  .attr("y1", 22)
+  .attr("x2", 11)
+  .attr("y2", 55)
+
+  image.append("line")
+  .style("stroke", "gray")
+  .style("stroke-width", "1")
+  .attr("x1", 21)
+  .attr("y1", 22)
+  .attr("x2", 31)
+  .attr("y2", 55)
+
+  image.append("line")
+  .style("stroke", "gray")
+  .style("stroke-width", "1")
+  .attr("x1", 79)
+  .attr("y1", 22)
+  .attr("x2", 89)
+  .attr("y2", 55)
+
+  image.append("line")
+  .style("stroke", "gray")
+  .style("stroke-width", "1")
+  .attr("x1", 79)
+  .attr("y1", 22)
+  .attr("x2", 69)
+  .attr("y2", 55)
+
+  image.append("ellipse")
+  .attr("rx", 15)
+  .attr("ry", 7)
+  .attr("cx", 50)
+  .attr("cy", 80)
+  .style("fill", "gold");
+
+  image.append("rect")
+  .attr("height", 3)
+  .attr("width", 60)
+  .attr("x", 20)
+  .attr("y", 20)
+  .style("fill", "rgb(240, 240, 0)")
+
+  image.append("polygon")
+  .attr("points", "50, 20 45, 80 55, 80")
+  .style("fill", "rgb(240, 240, 0)")
+
+  image.append("ellipse")
+  .attr("rx", 10)
+  .attr("ry", 5)
+  .attr("cx", 21)
+  .attr("cy", 55)
+  .style("fill", "gold");
+
+  image.append("ellipse")
+  .attr("rx", 10)
+  .attr("ry", 5)
+  .attr("cx", 79)
+  .attr("cy", 55)
+  .style("fill", "gold");
+
+  image.append("ellipse")
+  .attr("rx", 10)
+  .attr("ry", 5)
+  .attr("cx", 79)
+  .attr("cy", 55)
+  .style("fill", "gold");
+
+
+  // Test code to view center
+
+  // image.append("circle")
+  // .style("fill", "purple")
+  // .attr("r", 2)
+  // .attr("cx", 50)
+  // .attr("cy", 50)
+}
+
+// Test code to center
+
+// svg2.append("circle")
+// .attr("r", 200)
+// .attr("cx", 500)
+// .attr("cy", 500)
+// .style("fill", "yellow")
+
+
+// Single image code
+
+imageGenerator({"x": 500, "y": 500, "size": 50})
+
+
+// Demo code
+
+// var exampleArray= [{"x": 40, "y":50, "size": 3},
+// {"x": 850, "y":20, "size": 5},
+// {"x": 500, "y":500, "size": 4},
+// {"x": 50, "y":600, "size": 8},
+// {"x": 900, "y":700, "size": 3}];
+
+// exampleArray.forEach(function (d) {
+//   imageGenerator(d);
+// });
+
+</script>
+</html>

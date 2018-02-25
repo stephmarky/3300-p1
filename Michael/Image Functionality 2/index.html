@@ -1,0 +1,102 @@
+
+<html>
+<script src="https://d3js.org/d3.v4.js"></script>
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<svg height="1000" width="1000" id="graph1">
+</svg>
+<script>
+
+// Creates an array called rawcsvdata with dictionaries for each of the countries
+// values are given by countries, countryid, coordiunates, happiness
+// corruption, education, pills
+
+// Varialble declaration
+var rawcsvdata;
+
+// Grabs the id of the svg element
+var svg= d3.select("#graph1");
+
+d3.csv("FINAL_DATA.csv", function(data) {
+  rawcsvdata = data;
+  rawcsvdata.forEach(function(d) {
+    d.coordinates = d.coordinates.split(",").map(function(x){return Number(x)});
+    d.countryid = Number(d.countryid);
+    d.happiness = Number(d.happiness);
+    d.health = Number(d.health);
+    d.corruption = Number(d.corruption);
+    d.education = Number(d.education);
+    d.pills = Number(d.pills);
+  });
+
+// in final version this generateHealth funciton will be put into a queue
+// to make sure everything loads in order
+
+  generateHealth(rawcsvdata, healthImageHelper);
+});
+
+// Creates a scale to bring x coordinates to the size of the svg map
+// TODO: range needs to be adjusted
+var coordinatesXScale= d3.scaleLinear()
+.domain([-180, 180])
+.range([0, 1000])
+
+// Creates a scale to bring y coordinates to the size of the svg map
+// TODO: range needs to be adjusted
+var coordinatesYScale= d3.scaleLinear()
+.domain([-90, 90])
+.range([1000, 0])
+
+// First we make the scale linear such that we can change the dollars spent option
+// health into an appropriate number for our svg
+var linearHealthScale= d3.scaleLinear()
+.domain([0, 50000])
+.range([0, 5]);
+
+// Next we use a powerScale with exponent 0.5 to change the initial variable
+// such that the area is linear and correct
+var areaHealthScale= d3.scalePow().
+exponent([0.5]);
+
+// Since attr modification takes in a string, we must transform each scale value
+// into a string such that .attr("transform", to_string_scale(value)) is in
+// an acceptable format
+var to_string_scale= function(variable) {
+  return "scale(" + variable + ", " + variable + ")";
+};
+
+// Combines all functions into one
+var healthImageHelper= function(healthData) {
+  return to_string_scale(areaHealthScale(linearHealthScale(healthData)));
+};
+
+// Transforms x and y coordinates into a translate function string input
+// so that it is compatible with a .attr call
+var to_string_x_y= function(x, y) {
+  return "translate(" + x + "," + y + ")";
+};
+
+// Concatenates the transform functions into one, else overwriting will occur
+var transformHelper= function(x, y, imageHelperUsed, dataPoint) {
+  return to_string_x_y(x, y) + " " + imageHelperUsed(dataPoint);
+};
+
+// Below is an implementation of a loop that goes through each element of an array
+// and graphs it in a way that positions the x and y and size appropriately
+var generateHealth= function(dataArray, imageHelper) {
+  dataArray.forEach(function(d) {
+    svg.append("path")
+    .attr("d", "M 10 0 L 20 0 20 10 30 10 30 20 20 20 20 30 10 30 10 20 0 20 0 10 10 10 Z")
+    .attr("transform", transformHelper(
+      coordinatesXScale(d.coordinates[0]) - (areaHealthScale(linearHealthScale(d.health))*0.5),
+     coordinatesYScale(d.coordinates[1]) - (areaHealthScale(linearHealthScale(d.health))*0.5),
+     imageHelper,
+     d.health))
+    .style("fill", "red");
+  });
+};
+
+// We will swap this example array out with another array with the actual data
+// generateHealth(rawcsvdata, healthImageHelper);
+
+</script>
+</html>

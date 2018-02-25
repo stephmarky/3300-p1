@@ -1,0 +1,15 @@
+d3.csv("Summary.csv", function(data) {
+  rawcsvdata = data;
+  rawcsvdata.forEach(function(d) {
+    d.coordinates = d.coordinates.split(",").map(function(x){return Number(x)});
+    d.happiness = Number(d.happiness);
+    d.health = Number(d.health);
+    d.corruption = Number(d.corruption);
+    d.education = Number(d.education);
+    d.pills = Number(d.pills);
+
+    //coordinates.push(d.coordinates);
+    //randvalues.push(d.randvalues);
+
+  });
+});
