@@ -1,6 +1,6 @@
 <html>
 <head>
-<title> second try</title>
+<title>3300 P1</title>
 <link href="https://fonts.googleapis.com/css?family=Barlow+Condensed" rel="stylesheet">
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/default.min.css">
 <script src="https://d3js.org/d3.v4.min.js"></script>
@@ -9,13 +9,13 @@
 <style>
 body { font-family: 'Barlow Condensed', Calibri, sans-serif; }
 svg { border: solid #ccc 1px; }
-path.country { fill: #ccc; stroke: #888;; }
+path.country { fill: #ccc; stroke: #888; stroke-width: 0.3; }
 </style>
 </head>
 <body>
 
-
-<svg height="600" width="1000" viewbox="250 40 400 250"></svg>
+<!-- Europe: viewbox="450 120 150 120" -->
+<svg height="600" width="1000" viewbox="450 120 150 120"></svg>
 
 <script id="notes">
 
@@ -24,11 +24,16 @@ var svg = d3.select("svg");
 var projection = d3.geoMercator().scale(75);
 var pathGenerator = d3.geoPath().projection(projection);
 
-var divergingColors = ["#d8b365", "#f5f5f5", "#5ab4ac"];
-var sequentialColors = ['#edf8fb','#b2e2e2','#66c2a4','#2ca25f','#006d2c'];
+// dark blue: #0000cc
+// yellow: #ffff00
 
-var populationScale = d3.scaleLinear().domain([-5, 0, 5]).range(divergingColors);
-var percentScale = d3.scaleLinear().domain([0, 25, 50, 75, 100]).range(sequentialColors);
+// dark red: #8B0000
+// red: #cc0000
+// green: #329932
+
+var happinessColors = ['#cc0000', '#ffff00', '#329932']
+
+var percentScale = d3.scaleLinear().domain([5.19, 6.36, 7.53]).range(happinessColors);
 
 var countries;
 var atlas;
@@ -43,17 +48,17 @@ d3.queue()
 .defer(d3.csv, "Michael_data.csv", parseRow)
 .await(callback);
 
-d3.json("world-50m.json", callback);
 
 function callback (error, rawMap, rawISO) {
   console.log("Code in the call-back function is only executed when every data file loads.");
-  
-  atlas = d3.map(rawISO, function(d) { 
-    return Number(d.ISO3166);
-  });
 
-  // what is going wrong here? ERROR: 
+  atlas = d3.map(rawISO, function (d) {
+    // Set the ID to the result of this function.
+    return Number(d.ISO3166); // The Map file records codes as numbers, not strings.
+  });
+  
   countries = topojson.feature(rawMap, rawMap.objects.countries);
+  
   showMap(percentScale, "Happiness");
 }
 
@@ -72,23 +77,24 @@ function showMap(scale, variable) {
   paths
   .transition().duration(1000)
   .style("fill", function (country) {
-    // Fill this in
-    // var countryData = atlas.get(country.id);
-    // if (countryData) {
-    //   return scale(countryData[variable]);
-    // }
 
-    if(country.id == 840) {
-      return "blue"
+    var countryData = atlas.get(country.id);
+    if (countryData) {
+      return scale(countryData[variable]);
     }
 
+    // South Korea
+    // if(country.id == 410) {
+    //   return "blue"
+    // }
+
   })
+
   .attr("d", function (country) {
     return pathGenerator(country);
   });
   
 }
-
 
 
 console.log("Code after the d3.json() call is executed immediately.");
