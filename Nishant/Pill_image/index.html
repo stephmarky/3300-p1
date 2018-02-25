@@ -1,0 +1,115 @@
+<html>
+<script src="https://d3js.org/d3.v4.js"></script>
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<svg height="1000" width="1000" id="graph2">
+</svg>
+<body bgcolor = "yellow">
+<script>
+
+// COPY PASTED and EDITED
+
+var linearEduScale= d3.scaleLinear()
+.domain([0, 20])
+.range([0, 5]);
+
+// Next we use a powerScale with exponent 0.5 to change the initial variable
+// such that the area is linear and correct
+var areaEduScale= d3.scalePow().
+exponent([0.5]);
+
+// Since attr modification takes in a string, we must transform each scale value
+// into a string such that .attr("transform", to_string_scale(value)) is in
+// an acceptable format
+var to_string_scale= function(variable) {
+  return "scale(" + variable + ", " + variable + ")";
+};
+
+// Combines all functions into one
+var eduImageHelper= function(healthData) {
+  return to_string_scale(areaEduScale(linearEduScale(healthData)));
+};
+
+// Transforms x and y coordinates into a translate function string input
+// so that it is compatible with a .attr call
+var to_string_x_y= function(x, y) {
+  return "translate(" + x + "," + y + ")";
+};
+
+// Concatenates the transform functions into one, else overwriting will occur
+var transformHelper= function(x, y, imageHelperUsed, dataPoint) {
+  return to_string_x_y(x, y) + " " + imageHelperUsed(dataPoint);
+};
+
+
+// Select svg2
+var svg2= d3.select("#graph2");
+
+var imageGenerator= function (d) {
+
+  var image= svg2.append("g")
+  .attr("transform", transformHelper(d.x, d.y, eduImageHelper, d.size));
+
+  image.append("ellipse")
+  .style("stroke", "black")
+  .style("stroke-width", "0.2")
+  .attr("rx", 5)
+  .attr("ry", 1.5)
+  .attr("cx", 3)
+  .attr("cy", 5.5)
+  .attr("fill","white");
+
+  image.append("rect")
+  .style("stroke", "black")
+  .style("stroke-width", "0.2")
+  .attr("height", 2.5)
+  .attr("width", 10)
+  .attr("x", -2)
+  .attr("y", 3)
+  .attr("fill","white");
+
+  image.append("ellipse")
+  .style("stroke", "black")
+  .style("stroke-width", "0.2")
+  .attr("rx", 5)
+  .attr("ry", 1.5)
+  .attr("cx", 3)
+  .attr("cy", 3)
+  .attr("fill","white")
+  .fill;
+
+  image.append("line")
+  .style("stroke", "white")
+  .style("stroke-width", "0.3")
+  .attr("x1", -1.9)
+  .attr("y1", 5.5)
+  .attr("x2", 7.9)
+  .attr("y2", 5.5)
+
+
+
+  
+
+  
+
+  
+
+  
+
+  }
+imageGenerator({"x": 500, "y": 300, "size": 500})
+
+// var exampleArray= [{"x": 40, "y":50, "size": 30},
+// {"x": 850, "y":20, "size": 50},
+// {"x": 500, "y":500, "size": 40},
+// {"x": 50, "y":600, "size": 80},
+// {"x": 900, "y":700, "size": 30}];
+
+// imageGenerator(exampleArray[0]);
+
+// exampleArray.forEach(function (d) {
+//   imageGenerator(d);
+// });
+
+</script>
+</body>
+</html>
