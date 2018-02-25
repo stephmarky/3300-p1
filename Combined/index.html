@@ -25,13 +25,6 @@ var svg = d3.select("svg");
 var projection = d3.geoMercator().scale(75);
 var pathGenerator = d3.geoPath().projection(projection);
 
-// dark blue: #0000cc
-// yellow: #ffff00
-
-// dark red: #8B0000
-// red: #cc0000
-// green: #329932
-
 var happinessColors = ['#cc0000', '#ffff00', '#329932']
 
 var percentScale = d3.scaleLinear().domain([5.19, 6.36, 7.53]).range(happinessColors);
@@ -46,7 +39,7 @@ var parseRow = function(row) {
 
 d3.queue()
 .defer(d3.json, "world-50m.json")
-.defer(d3.csv, "Michael_data.csv", parseRow)
+.defer(d3.csv, "FINAL_DATA.csv", parseRow)
 .await(callback);
 
 
@@ -55,12 +48,12 @@ function callback (error, rawMap, rawISO) {
 
   atlas = d3.map(rawISO, function (d) {
     // Set the ID to the result of this function.
-    return Number(d.ISO3166); // The Map file records codes as numbers, not strings.
+    return Number(d.countryid); // The Map file records codes as numbers, not strings.
   });
   
   countries = topojson.feature(rawMap, rawMap.objects.countries);
   
-  showMap(percentScale, "Happiness");
+  showMap(percentScale, "happiness");
 }
 
 function showMap(scale, variable) {
@@ -84,10 +77,6 @@ function showMap(scale, variable) {
       return scale(countryData[variable]);
     }
 
-    // South Korea
-    // if(country.id == 410) {
-    //   return "blue"
-    // }
 
   })
 
