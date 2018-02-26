@@ -1,0 +1,232 @@
+<html>
+<head>
+<title>3300 P1</title>
+<link href="https://fonts.googleapis.com/css?family=Barlow+Condensed" rel="stylesheet">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/default.min.css">
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script src="http://d3js.org/topojson.v2.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js"></script>
+<style>
+body { font-family: 'Barlow Condensed', Calibri, sans-serif; }
+svg { border: solid #ccc 1px; }
+path.country { fill: #ccc; stroke: #888; stroke-width: 0.3; }
+</style>
+</head>
+<body>
+
+<!-- Europe: viewbox="450 160 200 300" -->
+<!-- world: viewbox="320 90 300 350" -->
+<svg height="1000" width="1000" id="graph2" viewbox="450 160 200 300" >
+
+<!-- <svg height="1000" width="1000" id="map"> </svg> -->
+
+</svg>
+
+<script id="notes">
+
+var svg = d3.select("#graph2");
+
+var projection = d3.geoEquirectangular().scale(75);
+var pathGenerator = d3.geoPath().projection(projection);
+
+var happinessColors = ['#cc0000', '#ffff00', '#329932']
+
+var percentScale = d3.scaleLinear().domain([5.19, 6.36, 7.53]).range(happinessColors);
+
+var countries;
+var atlas;
+
+// function to handle any row-by-row processing on CSV
+var parseRow = function(row) {
+  return row;
+}
+
+
+// Creates a scale to bring x coordinates to the size of the svg map
+// TODO: range needs to be adjusted
+var coordinatesXScale= d3.scaleLinear()
+.domain([-180, 180])
+.range([0, 1000])
+
+// Creates a scale to bring y coordinates to the size of the svg map
+// TODO: range needs to be adjusted
+var coordinatesYScale= d3.scaleLinear()
+.domain([-90, 90])
+.range([1000, 0])
+
+
+// GENERAL HELPERS!
+
+// Next we use a powerScale with exponent 0.5 to change the initial variable
+// such that the area is linear and correct
+var areaScale= d3.scalePow().
+exponent([1]);
+
+// Since attr modification takes in a string, we must transform each scale value
+// into a string such that .attr("transform", to_string_scale(value)) is in
+// an acceptable format
+var to_string_scale= function(variable) {
+  return "scale(" + variable + ", " + variable + ")";
+};
+
+// Transforms x and y coordinates into a translate function string input
+// so that it is compatible with a .attr call
+var to_string_x_y= function(x, y) {
+  return "translate(" + x + "," + y + ")";
+};
+
+// Concatenates the transform functions into one, else overwriting will occur
+var transformHelper= function(x, y, imageHelperUsed, dataPoint) {
+  return to_string_x_y(x, y) + " " + imageHelperUsed(dataPoint);
+};
+
+
+// Pill linear
+// Pill data to linear scale
+var linearPillsScale= d3.scaleLinear()
+.domain([0, 10000])
+.range([0, 20]);
+
+// Pill sizing
+var pillsImageHelper= function(healthData) {
+  return to_string_scale(areaScale(linearPillsScale(healthData)));
+};
+
+// Select svg2 for pills
+var svg2= d3.select("#graph2");
+
+var pillGenerator= function (d) {
+
+  var image= svg2.append("g")
+  .attr("transform", transformHelper(projection(d.coordinates)[0], 
+    projection(d.coordinates)[1], 
+    pillsImageHelper, d.pills));
+
+  var innerimage= image.append("g")
+  .attr("transform", "translate(-29, -29)")
+  .attr("opacity", "0.75")
+
+  innerimage.append("path")
+  .attr("d", "M17.775,17.594L4.667,30.702c-6.223,6.223-6.223,16.405,0,22.627h0   c6.223,6.223,16.405,6.223,22.627,0l13.108-13.108L17.775,17.594z")
+  .style("fill", "#DD352E")
+
+  innerimage.append("path")
+  .attr("d", "M40.422,40.202l12.908-12.907c6.222-6.223,6.222-16.405,0-22.627h0   c-6.223-6.223-16.405-6.223-22.627,0L17.794,17.574L40.422,40.202z")
+  .style("fill", "#EBBA16")
+
+  innerimage.append("path")
+  .attr("d", "M22.046,21.826l-17.11,17.11c-0.586,0.585-0.586,1.536,0,2.121c0.293,0.293,0.677,0.439,1.061,0.439   s0.768-0.146,1.061-0.439l17.11-17.11L22.046,21.826z")
+  .style("fill", "#F46767")
+
+  innerimage.append("path")
+  .attr("d", "M24.165,23.948L40.057,8.057c0.586-0.585,0.586-1.536,0-2.121c-0.586-0.586-1.535-0.586-2.121,0   L22.044,21.827L24.165,23.948z")
+  .style("fill", "#FCD770")
+}
+
+
+d3.queue()
+.defer(d3.json, "world-50m.json")
+.defer(d3.csv, "FINAL_DATA.csv", parseRow)
+.await(callback);
+
+
+function callback (error, rawMap, rawISO) {
+  console.log("Code in the call-back function is only executed when every data file loads.");
+
+// function logMapElements(value, key, map){
+//   console.log('m[${key}] = ${value');
+// }
+  
+
+  rawcsvdata = rawISO;
+  rawcsvdata.forEach(function(d) {
+    d.coordinates = d.coordinates.split(",").map(function(x){return Number(x)});
+    d.countryid = Number(d.countryid);
+    d.happiness = Number(d.happiness);
+    d.health = Number(d.health);
+    d.corruption = Number(d.corruption);
+    d.education = Number(d.education);
+    d.pills = Number(d.pills);
+  });
+
+
+
+
+  atlas = d3.map(rawISO, function (d) {
+    return Number(d.countryid); // The Map file records codes as numbers, not strings.
+  });
+
+
+    // Set the ID to the result of this function.
+    
+  
+  countries = topojson.feature(rawMap, rawMap.objects.countries);
+  
+  showMap(percentScale, "happiness");
+  
+  // var exampleArray= [
+  // {"x": 40, "y":50, "size": 3},
+  // {"x": 850, "y":20, "size": 5},
+  // {"x": 500, "y":500, "size": 4},
+  // {"x": 50, "y":600, "size": 8},
+  // {"x": 900, "y":700, "size": 3}
+  // ];
+
+  rawcsvdata.forEach(function (d) {
+    pillGenerator(d);
+  });
+
+  svg.append("circle")
+  .attr("cx", function(d){
+    return projection([56,59])[0];
+  })
+  .attr("cy", function(d){
+    return projection([56,59])[1];
+  })
+  .attr("r", 5)
+
+  // svg.append("circle")
+  // .attr("cx", coordinatesXScale(-95))
+  // .attr("cy", coordinatesYScale(60))
+  // .attr("r", 5)
+}
+
+function showMap(scale, variable) {
+  // Create or modify paths for each country
+  
+  projection.fitExtent([[0,0], [svg.attr("width"), svg.attr("height")]], countries);
+  pathGenerator = d3.geoPath().projection(projection);
+  
+  var paths = svg.selectAll("path.country").data(countries.features);
+  
+  paths = paths.enter().append("path").attr("class", "country")
+  .on("click", function (d) { console.log(d.id); })
+  .merge(paths);
+  
+  paths
+  .transition().duration(1000)
+  .style("fill", function (country) {
+
+    var countryData = atlas.get(country.id);
+    if (countryData) {
+      return scale(countryData[variable]);
+    }
+
+
+  })
+
+  .attr("d", function (country) {
+    return pathGenerator(country);
+  });
+  
+}
+
+
+console.log("Code after the d3.json() call is executed immediately.");
+
+</script>
+
+
+
+</body>
+</html>

@@ -45,108 +45,68 @@ var svg2= d3.select("#graph2");
 
 var imageGenerator= function (d) {
 
+  // Test code to center
+
+
   var image= svg2.append("g")
   .attr("transform", transformHelper(d.x, d.y, eduImageHelper, d.size));
 
-  // failed attempt to center
-
-  // .attr("transform", transformHelper(d.x - areaEduScale(linearEduScale((d.size))),
-  // d.y - areaEduScale(linearEduScale((d.size))),
-  // eduImageHelper, d.size));
-
-  image.append("line")
-  .style("stroke", "gray")
-  .style("stroke-width", "1")
-  .attr("x1", 21)
-  .attr("y1", 22)
-  .attr("x2", 11)
-  .attr("y2", 55)
-
-  image.append("line")
-  .style("stroke", "gray")
-  .style("stroke-width", "1")
-  .attr("x1", 21)
-  .attr("y1", 22)
-  .attr("x2", 31)
-  .attr("y2", 55)
-
-  image.append("line")
-  .style("stroke", "gray")
-  .style("stroke-width", "1")
-  .attr("x1", 79)
-  .attr("y1", 22)
-  .attr("x2", 89)
-  .attr("y2", 55)
-
-  image.append("line")
-  .style("stroke", "gray")
-  .style("stroke-width", "1")
-  .attr("x1", 79)
-  .attr("y1", 22)
-  .attr("x2", 69)
-  .attr("y2", 55)
-
-  image.append("ellipse")
-  .attr("rx", 15)
-  .attr("ry", 7)
-  .attr("cx", 50)
-  .attr("cy", 80)
-  .style("fill", "gold");
-
-  image.append("rect")
-  .attr("height", 3)
-  .attr("width", 60)
-  .attr("x", 20)
-  .attr("y", 20)
-  .style("fill", "rgb(240, 240, 0)")
-
-  image.append("polygon")
-  .attr("points", "50, 20 45, 80 55, 80")
-  .style("fill", "rgb(240, 240, 0)")
-
-  image.append("ellipse")
-  .attr("rx", 10)
-  .attr("ry", 5)
-  .attr("cx", 21)
-  .attr("cy", 55)
-  .style("fill", "gold");
-
-  image.append("ellipse")
-  .attr("rx", 10)
-  .attr("ry", 5)
-  .attr("cx", 79)
-  .attr("cy", 55)
-  .style("fill", "gold");
-
-  image.append("ellipse")
-  .attr("rx", 10)
-  .attr("ry", 5)
-  .attr("cx", 79)
-  .attr("cy", 55)
-  .style("fill", "gold");
-
+  var innerimage= image.append("g")
+  .attr("transform", "translate(-28.5, -28.5)")
 
   // Test code to view center
 
-  image.append("circle")
-  .style("fill", "purple")
-  .attr("r", 2)
-  .attr("cx", 50)
-  .attr("cy", 50)
+  innerimage.append("path")
+  .attr("d", "M17.775,17.594L4.667,30.702c-6.223,6.223-6.223,16.405,0,22.627h0   c6.223,6.223,16.405,6.223,22.627,0l13.108-13.108L17.775,17.594z")
+  .style("fill", "#DD352E")
+
+  innerimage.append("path")
+  .attr("d", "M40.422,40.202l12.908-12.907c6.222-6.223,6.222-16.405,0-22.627h0   c-6.223-6.223-16.405-6.223-22.627,0L17.794,17.574L40.422,40.202z")
+  .style("fill", "#EBBA16")
+
+  innerimage.append("path")
+  .attr("d", "M22.046,21.826l-17.11,17.11c-0.586,0.585-0.586,1.536,0,2.121c0.293,0.293,0.677,0.439,1.061,0.439   s0.768-0.146,1.061-0.439l17.11-17.11L22.046,21.826z")
+  .style("fill", "#F46767")
+
+  innerimage.append("path")
+  .attr("d", "M24.165,23.948L40.057,8.057c0.586-0.585,0.586-1.536,0-2.121c-0.586-0.586-1.535-0.586-2.121,0   L22.044,21.827L24.165,23.948z")
+  .style("fill", "#FCD770")
+
+  // svg2.append("line")
+  // .style("stroke", "black")
+  // .style("stroke-width", 1)
+  // .attr("x1", 0)
+  // .attr("y1", 0)
+  // .attr("x2", 200)
+  // .attr("y2", 200)
+  //
+  // svg2.append("line")
+  // .style("stroke", "black")
+  // .style("stroke-width", 1)
+  // .attr("x1", 200)
+  // .attr("y1", 0)
+  // .attr("x2", 0)
+  // .attr("y2", 200)
+
+  svg2.append("circle")
+  .attr("r", 1)
+  .attr("cx", 500)
+  .attr("cy", 500)
+  .style("fill", "gray");
 }
 
 // Test code to center
 
-svg2.append("circle")
-.attr("r", 200)
-.attr("cx", 500)
-.attr("cy", 500)
-.style("fill", "blue")
+// svg2.append("circle")
+// .attr("r", 200)
+// .attr("cx", 500)
+// .attr("cy", 500)
+// .style("fill", "gray");
 
 
 // Single image code
 
-imageGenerator({"x": 500, "y": 500, "size": 50})
+imageGenerator({"x": 500, "y": 500, "size": 50});
 
 
 // Demo code
