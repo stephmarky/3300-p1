@@ -352,13 +352,13 @@ function callback (error, rawMap, rawISO) {
 
   //CREATING MAP KEYS FOR ALL 4 MAP SVGS
   makeHappyScale("#keys1");
-  makeVarScale("#keys1");
+  makeHealthScale("#keys1");
   makeHappyScale("#keys2");
-  makeVarScale("#keys2");
+  makeCorruptionScale("#keys2");
   makeHappyScale("#keys3");
-  makeVarScale("#keys3");
+  makeEducationScale("#keys3");
   makeHappyScale("#keys4");
-  makeVarScale("#keys4");
+  makePillsScale("#keys4");
   
   //CALLING IMAGE MAKING FUNCTIONS FOR ALL 4 TYPES OF IMAGES
   rawcsvdata.forEach(function (d) {
@@ -464,7 +464,237 @@ function showMap(scale, variable, svg) {
 
 
 //MAKES VARIABLE SCALE FOR THE PARTICULAR SVG
-    function makeVarScale(svg){
+    function makeHealthScale(svg){
+
+      var svg = d3.select(svg);
+
+      var varGradient = svg.append("rect")
+      .attr("x", "530")
+      .attr("y", "70")
+      .attr("width", "400")
+      .attr("height", "50")
+      .attr("fill","white")
+      .style("stroke","black")
+      .style("stroke-width", 0.4);
+
+       var textLabelVar = svg.append("text")
+      .text("Governement Health Expenditure ($)")
+      .attr("x", "730")
+      .attr("y", "50")
+      .attr("text-anchor", "middle")
+      .attr("alignment-baseline", "middle")
+      .attr("font-size", "15")
+      .attr("font-family", "Palantino")
+      .attr("fill", "black");
+
+      var textLabelLow = svg.append("text")
+      .text("Low")
+      .attr("x", "530")
+      .attr("y", "130")
+      .attr("text-anchor", "middle")
+      .attr("alignment-baseline", "middle")
+      .attr("font-size", "13")
+      .attr("font-family", "Palantino")
+      .attr("fill", "black");
+
+      var textLabelHigh = svg.append("text")
+      .text("High")
+      .attr("x", "930")
+      .attr("y", "130")
+      .attr("text-anchor", "middle")
+      .attr("alignment-baseline", "middle")
+      .attr("font-size", "13")
+      .attr("font-family", "Palantino")
+      .attr("fill", "black");
+
+      var varSmall = svg.append("circle")
+      .attr("r", 5)
+      .attr("cx", 540)
+      .attr("cy", 95)
+      .style("fill", "black");
+
+      var varSmallMedium = svg.append("circle")
+      .attr("r", 7)
+      .attr("cx", 635)
+      .attr("cy", 95)
+      .style("fill", "black");
+
+      var varMedium = svg.append("circle")
+      .attr("r", 9)
+      .attr("cx", 730)
+      .attr("cy", 95)
+      .style("fill", "black");
+
+       var varMediumLarge = svg.append("circle")
+      .attr("r", 11)
+      .attr("cx", 825)
+      .attr("cy", 95)
+      .style("fill", "black");
+
+       var varLarge = svg.append("circle")
+      .attr("r", 13)
+      .attr("cx", 915)
+      .attr("cy", 95)
+      .style("fill", "black");
+
+    }
+
+    
+    function makeCorruptionScale(svg){
+
+      var svg = d3.select(svg);
+
+      var varGradient = svg.append("rect")
+      .attr("x", "530")
+      .attr("y", "70")
+      .attr("width", "400")
+      .attr("height", "50")
+      .attr("fill","white")
+      .style("stroke","black")
+      .style("stroke-width", 0.4);
+
+       var textLabelVar = svg.append("text")
+      .text("Bureaucratic Honesty (Lack of Corruption)")
+      .attr("x", "730")
+      .attr("y", "50")
+      .attr("text-anchor", "middle")
+      .attr("alignment-baseline", "middle")
+      .attr("font-size", "15")
+      .attr("font-family", "Palantino")
+      .attr("fill", "black");
+
+      var textLabelLow = svg.append("text")
+      .text("Low")
+      .attr("x", "530")
+      .attr("y", "130")
+      .attr("text-anchor", "middle")
+      .attr("alignment-baseline", "middle")
+      .attr("font-size", "13")
+      .attr("font-family", "Palantino")
+      .attr("fill", "black");
+
+      var textLabelHigh = svg.append("text")
+      .text("High")
+      .attr("x", "930")
+      .attr("y", "130")
+      .attr("text-anchor", "middle")
+      .attr("alignment-baseline", "middle")
+      .attr("font-size", "13")
+      .attr("font-family", "Palantino")
+      .attr("fill", "black");
+
+      var varSmall = svg.append("circle")
+      .attr("r", 5)
+      .attr("cx", 540)
+      .attr("cy", 95)
+      .style("fill", "black");
+
+      var varSmallMedium = svg.append("circle")
+      .attr("r", 7)
+      .attr("cx", 635)
+      .attr("cy", 95)
+      .style("fill", "black");
+
+      var varMedium = svg.append("circle")
+      .attr("r", 9)
+      .attr("cx", 730)
+      .attr("cy", 95)
+      .style("fill", "black");
+
+       var varMediumLarge = svg.append("circle")
+      .attr("r", 11)
+      .attr("cx", 825)
+      .attr("cy", 95)
+      .style("fill", "black");
+
+       var varLarge = svg.append("circle")
+      .attr("r", 13)
+      .attr("cx", 915)
+      .attr("cy", 95)
+      .style("fill", "black");
+
+
+
+    }
+
+    function makeEducationScale(svg){
+
+      var svg = d3.select(svg);
+
+      var varGradient = svg.append("rect")
+      .attr("x", "530")
+      .attr("y", "70")
+      .attr("width", "400")
+      .attr("height", "50")
+      .attr("fill","white")
+      .style("stroke","black")
+      .style("stroke-width", 0.4);
+
+       var textLabelVar = svg.append("text")
+      .text("Educated People (Ages 45 - 54)?")
+      .attr("x", "730")
+      .attr("y", "50")
+      .attr("text-anchor", "middle")
+      .attr("alignment-baseline", "middle")
+      .attr("font-size", "15")
+      .attr("font-family", "Palantino")
+      .attr("fill", "black");
+
+      var textLabelLow = svg.append("text")
+      .text("Low")
+      .attr("x", "530")
+      .attr("y", "130")
+      .attr("text-anchor", "middle")
+      .attr("alignment-baseline", "middle")
+      .attr("font-size", "13")
+      .attr("font-family", "Palantino")
+      .attr("fill", "black");
+
+      var textLabelHigh = svg.append("text")
+      .text("High")
+      .attr("x", "930")
+      .attr("y", "130")
+      .attr("text-anchor", "middle")
+      .attr("alignment-baseline", "middle")
+      .attr("font-size", "13")
+      .attr("font-family", "Palantino")
+      .attr("fill", "black");
+
+      var varSmall = svg.append("circle")
+      .attr("r", 5)
+      .attr("cx", 540)
+      .attr("cy", 95)
+      .style("fill", "black");
+
+      var varSmallMedium = svg.append("circle")
+      .attr("r", 7)
+      .attr("cx", 635)
+      .attr("cy", 95)
+      .style("fill", "black");
+
+      var varMedium = svg.append("circle")
+      .attr("r", 9)
+      .attr("cx", 730)
+      .attr("cy", 95)
+      .style("fill", "black");
+
+       var varMediumLarge = svg.append("circle")
+      .attr("r", 11)
+      .attr("cx", 825)
+      .attr("cy", 95)
+      .style("fill", "black");
+
+       var varLarge = svg.append("circle")
+      .attr("r", 13)
+      .attr("cx", 915)
+      .attr("cy", 95)
+      .style("fill", "black");
+
+
+
+    }
+
+    function makePillsScale(svg){
 
       var svg = d3.select(svg);
 
@@ -540,7 +770,6 @@ function showMap(scale, variable, svg) {
 
 
     }
-
   
 
 </script>
