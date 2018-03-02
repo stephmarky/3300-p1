@@ -193,7 +193,219 @@ var circleLegend= svg1.append("g")
 .attr("transform", "translate (300, 300)");
 
 circleLegend.append("circle")
-.attr("r", 10);
+.attr("r", 1);
+
+ circleLegend.append("circle")
+  .attr("r", 30)
+  .style("stroke-width", 1)
+  .style("stroke", "pink")
+  .style("fill", "none");
+
+  circleLegend.append("circle")
+  .attr("r", 60)
+  .style("stroke-width", 1)
+  .style("stroke", "violet")
+  .style("fill", "none");
+
+  circleLegend.append("circle")
+  .attr("r", 90)
+  .style("stroke-width", 1)
+  .style("stroke", "magenta")
+  .style("fill", "none");
+
+//HEALTH VALUES : 438.742892, , 6905.53034
+
+  circleLegend.append("text")
+  .text("438.75")
+  .attr("x", 0)
+  .attr("y", -20)
+  .attr("text-anchor", "middle")
+  .attr("alignment-baseline", "middle")
+  .attr("font-size", 9)
+  .attr("fill", "black")
+
+  circleLegend.append("text")
+  .text("3672.14")
+  .attr("x", 0)
+  .attr("y", -50)
+  .attr("text-anchor", "middle")
+  .attr("alignment-baseline", "middle")
+  .attr("font-size", 9)
+  .attr("fill", "black")
+
+  circleLegend.append("text")
+  .text("6905.53")
+  .attr("x", 0)
+  .attr("y", -80)
+  .attr("text-anchor", "middle")
+  .attr("alignment-baseline", "middle")
+  .attr("font-size", 9)
+  .attr("fill", "black")
+
+  circleLegend.append("text")
+  .text("GOVT. HEALTH EXPENDITURE ($)")
+  .attr("x", 0)
+  .attr("y", -100)
+  .attr("text-anchor", "middle")
+  .attr("alignment-baseline", "middle")
+  .attr("font-size", 10)
+  .attr("fill", "black")
+
+
+
+  //BUREAUCRATIC HONESTY VALUES : 41, 65.5, 90
+
+  circleLegend.append("text")
+  .text("41")
+  .attr("x", 20)
+  .attr("y", 0)
+  .attr("text-anchor", "middle")
+  .attr("alignment-baseline", "middle")
+  .attr("font-size", 9)
+  .attr("fill", "black")
+
+  circleLegend.append("text")
+  .text("65.5")
+  .attr("x", 50)
+  .attr("y", 0)
+  .attr("text-anchor", "middle")
+  .attr("alignment-baseline", "middle")
+  .attr("font-size", 9)
+  .attr("fill", "black")
+
+  circleLegend.append("text")
+  .text("90")
+  .attr("x", 80)
+  .attr("y", 0)
+  .attr("text-anchor", "middle")
+  .attr("alignment-baseline", "middle")
+  .attr("font-size", 9)
+  .attr("fill", "black")
+
+  circleLegend.append("text")
+  .text("BUREAUCRATIC HONESTY")
+  .attr("x", 100)
+  .attr("y", 0)
+  .attr("text-anchor", "middle")
+  .attr("alignment-baseline", "middle")
+  .attr("font-size", 10)
+  .attr("fill", "black")
+  .attr("transform", "rotate (90,100,0)")
+
+  //TERTIARY EDUCATION VALUES : 10.02, 28.81, 47.6
+
+  circleLegend.append("text")
+  .text("10.02")
+  .attr("x", 0)
+  .attr("y", 20)
+  .attr("text-anchor", "middle")
+  .attr("alignment-baseline", "middle")
+  .attr("font-size", 9)
+  .attr("fill", "black")
+
+  circleLegend.append("text")
+  .text("28.81")
+  .attr("x", 0)
+  .attr("y", 50)
+  .attr("text-anchor", "middle")
+  .attr("alignment-baseline", "middle")
+  .attr("font-size", 9)
+  .attr("fill", "black")
+
+  circleLegend.append("text")
+  .text("47.6")
+  .attr("x", 0)
+  .attr("y", 80)
+  .attr("text-anchor", "middle")
+  .attr("alignment-baseline", "middle")
+  .attr("font-size", 9)
+  .attr("fill", "black")
+
+  circleLegend.append("text")
+  .text("TERTIARY EDUCATION (55-64)")
+  .attr("x", 0)
+  .attr("y", 100)
+  .attr("text-anchor", "middle")
+  .attr("alignment-baseline", "middle")
+  .attr("font-size", 10)
+  .attr("fill", "black")
+
+
+//PILLS VALUES : 12.3, 70.95, 129.6
+
+  circleLegend.append("text")
+  .text("12.3")
+  .attr("x", -20)
+  .attr("y", 0)
+  .attr("text-anchor", "middle")
+  .attr("alignment-baseline", "middle")
+  .attr("font-size", 9)
+  .attr("fill", "black")
+
+  circleLegend.append("text")
+  .text("70.95")
+  .attr("x", -50)
+  .attr("y", 0)
+  .attr("text-anchor", "middle")
+  .attr("alignment-baseline", "middle")
+  .attr("font-size", 9)
+  .attr("fill", "black")
+
+  circleLegend.append("text")
+  .text("129.6")
+  .attr("x", -80)
+  .attr("y", 0)
+  .attr("text-anchor", "middle")
+  .attr("alignment-baseline", "middle")
+  .attr("font-size", 9)
+  .attr("fill", "black")
+
+  circleLegend.append("text")
+  .text("ANTIDEPRESSANT USAGE")
+  .attr("x", -100)
+  .attr("y", 0)
+  .attr("text-anchor", "middle")
+  .attr("alignment-baseline", "middle")
+  .attr("font-size", 10)
+  .attr("fill", "black")
+  .attr("transform", "rotate (-90,-100,0)")
+
+  //ADDING DIRECTIONAL ARROWS
+
+  circleLegend.append("path")
+  .attr("d", "M 0 -10 L 0 -75 -10 -60 M 0 -75 L 10 -60 ")
+  .style("opacity", 0.15)
+  .style("fill", "none")
+  .style("stroke","blue")
+  .style("stroke-width",3);
+
+  circleLegend.append("path")
+  .attr("d", "M 0 -10 L 0 -75 -10 -60 M 0 -75 L 10 -60 ")
+  .style("opacity", 0.15)
+  .style("fill", "none")
+  .style("stroke","blue")
+  .style("stroke-width",3)
+  .attr("transform", "rotate (90)");
+
+  circleLegend.append("path")
+  .attr("d", "M 0 -10 L 0 -75 -10 -60 M 0 -75 L 10 -60 ")
+  .style("opacity", 0.15)
+  .style("fill", "none")
+  .style("stroke","blue")
+  .style("stroke-width",3)
+  .attr("transform", "rotate (180)")
+
+  circleLegend.append("path")
+  .attr("d", "M 0 -10 L 0 -75 -10 -60 M 0 -75 L 10 -60 ")
+  .style("opacity", 0.15)
+  .style("fill", "none")
+  .style("stroke","blue")
+  .style("stroke-width",3)
+  .attr("transform", "rotate (270)")
+
+
+
+  
 
 
 </script>
