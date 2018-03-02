@@ -1,0 +1,48 @@
+<html>
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<svg id="graph" height="1000" width="1000">
+</svg>
+<script>
+
+var healthImageConstant= .0001;
+
+var linearHealthScale= function (health) {
+  return healthImageConstant * healthPercentileScale(health)
+};
+
+var healthPercentileScale= d3.scaleQuantile()
+.domain([438.7428921, 1277.69566, 2933.400094, 3735.9829, 6905.530344])
+.range([1, 2, 4, 8]);
+
+var corruptionImageConstant= .00002;
+
+var linearCorruptionScale= function (corruption) {
+  return corruptionImageConstant * corruptionPercentileScale(corruption)
+};
+
+var corruptionPercentileScale= d3.scaleQuantile()
+.domain([41, 57.5, 70, 81, 90])
+.range([1, 2, 4, 8]);
+
+var educationImageConstant= .00005;
+
+var linearEducationScale= function (education) {
+  return educationImageConstant * educationPercentileScale(education)
+};
+
+var educationPercentileScale= d3.scaleQuantile()
+.domain([10.2, 18.15, 26.3, 30.35, 47.6])
+.range([1, 2, 4, 8]);
+
+var pillsImageConstant= 1;
+
+var linearPillsScale= function (pills) {
+  return pillsImageConstant * pillsPercentileScale(pills)
+};
+
+var pillsPercentileScale= d3.scaleQuantile()
+.domain([12.3, 44.75, 55, 70.65, 129.6])
+.range([1, 2, 4, 8]);
+
+</script>
+</html>

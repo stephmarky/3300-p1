@@ -1,0 +1,194 @@
+
+<html>
+<head>
+<title>3300 P1</title>
+<link href="https://fonts.googleapis.com/css?family=Barlow+Condensed" rel="stylesheet">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/default.min.css">
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script src="http://d3js.org/topojson.v2.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js"></script>
+<style>
+  body {
+    /*font-family: 'Barlow Condensed', Calibri, sans-serif; */
+    font-family: Helvetica, sans-serif;
+  }
+  h1 {
+    text-align: center;
+  }
+  svg {
+    border: solid #ccc 1px;
+    margin-left:auto; margin-right:auto; display:block;
+  }
+  .key {
+    border-top: none;
+    margin-bottom: 4%;
+  }
+  .graph {
+    border-bottom: none;
+  }
+  path.country {
+    fill: #ccc; stroke: #888; stroke-width: 0.3;
+  }
+
+  text {
+    font-family: Helvetica;
+    font-weight: lighter;
+  }
+
+</style>
+</head>
+
+
+<body>
+
+
+<h1>What makes a happy country?</h1>
+
+<svg class="graph" id="graph1" height="650" width="700"> </svg>
+
+
+<script id="notes">
+
+svg = d3.select("#graph1");
+//Scales for the variables in the circle visualisation
+
+var circleHealthScale= d3.scaleLinear()
+.domain([438.742892, 6905.53034])
+.range([10, 30]);
+
+var circleCorruptionScale= d3.scaleLinear()
+.domain([41, 90])
+.range([10, 30]);
+
+
+var circleEducationScale= d3.scaleLinear()
+.domain([10.02, 47.6])
+.range([10, 30]);
+
+
+var circlePillsScale= d3.scaleLinear()
+.domain([12.3, 129.6])
+.range([10, 30]);
+
+
+var happinessColors = ['#cc0000', '#ffff00', '#329932']
+
+var percentScale = d3.scaleLinear().domain([5.19, 6.36, 7.53]).range(happinessColors);
+
+var parseRow = function(row) {
+  return row;
+}
+
+var circleEnlarge= (650/95)/5;
+
+var xCircles= function(x) {
+  return (circleEnlarge*40) + ((x-1)*(700 - (circleEnlarge*40) - (circleEnlarge*40))/5)
+};
+
+var yCircles= function(y) {
+  return (circleEnlarge*40) + ((y-1)*(650 - (circleEnlarge*40) - (circleEnlarge*55))/4)
+};
+
+var circlePathFormer = function (d){
+
+    var pathstring =  'M 0 ' + circleHealthScale(d.health) + ' L ' + circleCorruptionScale(d.corruption) + ' 0 '
+    + '0 ' +  (-1 * circleEducationScale(d.education)) + ' ' + (-1 * circlePillsScale(d.pills)) + ' 0 Z' ;
+
+    //var fillcolorString = percentScale(d.happiness);
+
+    return pathstring;
+
+  }
+
+var graphingPositions= [
+  {"x": 1, "y":1}, {"x": 2, "y":1}, {"x": 3, "y":1}, {"x": 4, "y":1}, {"x": 5, "y":1}, {"x": 6, "y":1},
+  {"x": 1, "y":2}, {"x": 2, "y":2}, {"x": 3, "y":2}, {"x": 4, "y":2}, {"x": 5, "y":2}, {"x": 6, "y":2},
+  {"x": 1, "y":3}, {"x": 2, "y":3}, {"x": 3, "y":3}, {"x": 4, "y":3}, {"x": 5, "y":3}, {"x": 6, "y":3},
+  {"x": 1, "y":4}, {"x": 2, "y":4}, {"x": 3, "y":4}, {"x": 4, "y":4}, {"x": 5, "y":4}, {"x": 6, "y":4},
+  {"x": 1, "y":5}, {"x": 2, "y":5}, {"x": 3, "y":5}
+];
+
+var circleGenerator= function (d, xtransform, ytransform) {
+  //TODO: Select the correct SVG
+  var image= svg.append("g")
+  .attr("transform", "translate(" + xCircles(xtransform) + "," + yCircles(ytransform) + ")");
+
+  var innerimage= image.append("g")
+  .attr("transform", "scale(" + circleEnlarge + "," + circleEnlarge + ")");
+
+  innerimage.append("circle")
+  .attr("r", 1);
+
+  innerimage.append("circle")
+  .attr("r", 10)
+  .style("stroke-width", 1)
+  .style("stroke", "pink")
+  .style("fill", "none");
+
+  innerimage.append("circle")
+  .attr("r", 20)
+  .style("stroke-width", 1)
+  .style("stroke", "violet")
+  .style("fill", "none");
+
+  innerimage.append("circle")
+  .attr("r", 30)
+  .style("stroke-width", 1)
+  .style("stroke", "magenta")
+  .style("fill", "none");
+
+  innerimage.append("path")
+  .attr("d", circlePathFormer(d))
+  .style("opacity", 0.85)
+  .style("fill", "" + percentScale(d.happiness));
+
+  innerimage.append("text")
+  .text(d.country)
+  .attr("x", 0)
+  .attr("y", 40)
+  .attr("text-anchor", "middle")
+  .attr("alignment-baseline", "middle")
+  .attr("font-size", 8)
+  .attr("fill", "black")
+
+};
+
+
+d3.queue()
+.defer(d3.json, "world-50m.json")
+.defer(d3.csv, "FINAL_DATA.csv", parseRow)
+.await(callback);
+
+
+//CALLBACK FUNCTION THAT MANIPULATES DATA AND CALLS FUNCTIONS TO CREATE MAPS AND MAP KEYS
+function callback (error, rawMap, rawISO) {
+  console.log("Code in the call-back function is only executed when every data file loads.");
+
+//MANIPULATING DATA
+  rawcsvdata = rawISO;
+  rawcsvdata.forEach(function(d) {
+    d.coordinates = d.coordinates.split(",").map(function(x){return Number(x)});
+    d.countryid = Number(d.countryid);
+    d.happiness = Number(d.happiness);
+    d.health = Number(d.health);
+    d.corruption = Number(d.corruption);
+    d.education = Number(d.education);
+    d.pills = Number(d.pills);
+  });
+
+
+   rawcsvdata.forEach(function (d, i) {
+     circleGenerator(d, graphingPositions[i].x, graphingPositions[i].y);
+   });
+
+}
+
+
+
+
+</script>
+
+
+
+</body>
+</html>
