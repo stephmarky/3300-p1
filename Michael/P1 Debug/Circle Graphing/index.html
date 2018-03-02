@@ -46,6 +46,8 @@
 
 <svg class="graph" id="graph1" height="650" width="700"> </svg>
 
+<svg class="graph" id="graph2" height="600" width="600"> </svg>
+
 
 <script id="notes">
 
@@ -184,6 +186,14 @@ function callback (error, rawMap, rawISO) {
 }
 
 
+//TODO: Design begins here
+var svg1= d3.select("#graph2");
+
+var circleLegend= svg1.append("g")
+.attr("transform", "translate (300, 300)");
+
+circleLegend.append("circle")
+.attr("r", 10);
 
 
 </script>
