@@ -5,6 +5,7 @@ html, body {
   padding: 0;
 }
 
+
 path.country { 
   fill: white; 
   stroke: #888; 
@@ -16,6 +17,32 @@ text {
   font-weight: lighter;
 }
 
+.key-text {
+  alignment-baseline: middle;
+  font-size: 60px;
+  fill: black;
+}
+
+
+#content {
+  /*margin: 4% 0%;*/
+  text-align: center;
+}
+
+header {
+  margin-top: 4%;
+  margin-bottom: 4%;
+  margin-left: auto;
+  margin-right: auto;
+  width: 960px;
+  text-align: left;
+  padding-left: 20px;
+}
+
+header a {
+  color: black;
+}
+
 #title {
   font-size: 42px;
   text-align: left;
@@ -23,20 +50,12 @@ text {
 }
 
 #highlight {
-  background-color: #f5eee5;
+  color: #329932;
 }
 
 
 #subtitle {
   font-weight: lighter;
-}
-
-header {
-  margin-bottom: 4%;
-}
-
-#content {
-  margin: 4% 5%;
 }
 
 
@@ -54,44 +73,59 @@ svg {
   /*height: 650px;*/
 }
 
+
+.map-container {
+  display: inline-block;
+  width: 660px;
+  height: 450px;
+  margin: 0 0 0 1.5%;
+  overflow: hidden;
+
+}
+
 .desc-container {
+  text-align: left;
   /*border-style: solid;*/
   border-color: purple;
-
   background-color: #f5eee5;
 
-  width: 340px;
-  padding: 1%;
+  width: 240px;
+  height: 450px;
+  padding: 5px 10px;
   display: inline-block;
   vertical-align: top;
-  min-height: 630px;
 
   /*position: relative;*/
 }
 
+h2 {
+  margin: 2px 0;
+}
+
 .desc-text {
+  text-align: left;
   /*position: absolute;*/
   z-index: 1;
-  font-size: 16px;
+  font-size: 14px;
+  padding-left: 4px;
+
+  margin: 5px 0;
 }
 
-.map-container {
-  display: inline-block;
-  width: 900px;
-  margin: 0 0 0 1.5%;
-
+.source {
+  font-size: 12px;
 }
 
-.graph {
+
+.graph { /* svg */
   width: 100%;
   height: 650px;
 
 }
 
-.key {
-  width: 100%;
-  height: 320px;
-  /*background-color: #f9eec4;*/
+.key { /*svg */
+  width: 240px;
+  height: 250px;
 }
 
 
