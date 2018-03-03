@@ -1,47 +1,47 @@
 <html>
+
 <head>
-  <title>Country Happiness | 3300 Project 1</title>
-  <link href="https://fonts.googleapis.com/css?family=Playfair+Display|Roboto+Condensed" rel="stylesheet">
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/default.min.css">
-  <link rel="stylesheet" type="text/css" href="all.css">
-  <script src="https://d3js.org/d3.v4.min.js"></script>
-  <script src="http://d3js.org/topojson.v2.min.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js"></script>
+    <title>Country Happiness - 3300 Project 1</title>
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display|Roboto+Condensed" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/default.min.css">
+    <link rel="stylesheet" type="text/css" href="all.css">
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="http://d3js.org/topojson.v2.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js"></script>
 </head>
 
 <body>
+    <script>
+        //Fade text in
+        document.body.classList.add('fade');
+    </script>
 
-<script>
-  // fade in text on load
-  document.body.classList.add('fade');
-</script>
-<!-- Europe: viewbox="450 160 200 300" -->
-<!-- world: viewbox="320 90 300 350" -->
-<!-- viewbox="500 45 60 115"  -->
+<!-- DEFINING ALL THE SVGs FOR ALL 5 MAPS, MAP SIDEBARS AND MAP KEYS -->
 
-<div id="content">
-  <!-- DEFINING ALL SVG ELEMENTS FOR  MAPS AND MAP KEYS  -->
-  <header>
-    <h1 id="title">What makes a country <span id="highlight">happy</span>?</h1>
-    <h3 id="subtitle">
-       Citizen happiness is used to justify everything from wide-sweeping policies to regime changes. It is the backbone of political campaigns, and a topic constantly up for contentious debate. Understanding the source of happiness is crucial to ensuring a country&rsquo;s prosperity and its citizens&rsquo; wellbeing. In our research project, we aimed to tackle these questions for developed European OECD countries by finding surprising correlations between various variables and the happiness of each nation (measured by the <a href="http://worldhappiness.report/ed/2017/"> 2017 World Happiness Report</a>).
+    <div id="content">
 
-    </h3>
-  </header>
+        <header>
+            <h1 id="title">What makes a country <span id="highlight">happy</span>?</h1>
+            <h3 id="subtitle">
+                Citizen happiness is used to justify everything from wide-sweeping policies to regime changes. It is the backbone of political campaigns, and a topic constantly up for contentious debate. Understanding the source of happiness is crucial to ensuring a country&rsquo;s prosperity and its citizens&rsquo; wellbeing. In our research project, we aimed to tackle these questions for developed European and Middle Eastern OECD countries by finding surprising correlations between various variables and the happiness of each nation (measured by the <a href="http://worldhappiness.report/ed/2017/"> 2017 World Happiness Report</a>).
+
+            </h3>
+        </header>
 
 
-  <div class="section">
-    
-    <div class="desc-container">
-      <h2>Government Health Expenditure per Person</h2>
-      <p class="desc-text">
-        A healthy populace makes for a happy one. Governments that invest in the health of their citizens tend to have happier populations.
-        <p class="quote"> &quot;It is health that is real wealth not pieces of gold and silver.&quot; &#8211;Mahatma Gandhi </p>
-        <p class="source">Source: <a href="https://www.gapminder.org/data">GapMinder</a></p>
-      </p>
 
-      <svg class="key" id="keys1" viewbox="0 -300 1200 800">
-          <!-- gradient definition -->
+        <div class="section">
+
+            <div class="desc-container">
+                <h2>Government Health Expenditure per Citizen</h2>
+                <p class="desc-text">
+                    A healthy populace makes for a happy one. Governments that invest in the health of their citizens tend to have happier populations.
+                    <p class="quote"> &quot;It is health that is real wealth not pieces of gold and silver.&quot; &#8211;Mahatma Gandhi </p>
+                    <p class="source">Source: <a href="https://www.gapminder.org/data">GapMinder</a></p>
+                </p>
+
+                <svg class="key" id="keys1" viewbox="0 -300 1200 800">
+
           <defs>
             <linearGradient id="happinessGradient" x1="0" x2="0" y1="0" y2="1">
               <stop offset="0%" stop-color="#329932"/>
@@ -50,25 +50,25 @@
             </linearGradient>
           </defs>
       </svg>
-    </div>
+            </div>
 
-    <div class="map-container">
-      <svg class="graph" id="graph1" height="450" width="660" viewbox="315 90 65 80"></svg>
-    </div>
+            <div class="map-container">
+                <svg class="graph" id="graph1" height="450" width="660" viewbox="315 90 65 80"></svg>
+            </div>
 
-  </div>
+        </div>
 
 
-  <div class="section">
-    <div class="desc-container">
-      <h2>Bureaucratic Honesty</h2>
-      <p class="desc-text">
-        The citizens care about the integrity of their political systems. Regime honesty is well-correlated with citizen happiness.
-      </p>
-      <p class="quote">&quot;Honesty is the best policy.&quot; &#8211;Benjamin Franklin </p>
-      <p class="source">Source: <a href="https://www.transparency.org/news/feature/corruption_perceptions_index_2016">Transparency Int'l</a></p>
-    
-    <svg class="key" id="keys2" height="450" width="660" viewbox="0 -300 1200 800">
+        <div class="section">
+            <div class="desc-container">
+                <h2>Bureaucratic Honesty</h2>
+                <p class="desc-text">
+                    The citizens care about the integrity of their political systems. Regime honesty is well-correlated with citizen happiness.
+                </p>
+                <p class="quote">&quot;Honesty is the best policy.&quot; &#8211;Benjamin Franklin </p>
+                <p class="source">Source: <a href="https://www.transparency.org/news/feature/corruption_perceptions_index_2016">Transparency Int'l</a></p>
+
+                <svg class="key" id="keys2" height="450" width="660" viewbox="0 -300 1200 800">
         <defs>
           <linearGradient id="happinessGradient" x1="0" x2="1" y1="0" y2="0">
             <stop offset="0%" stop-color="#cc0000"/>
@@ -78,25 +78,25 @@
           
       </defs>
     </svg>
-  </div>
+            </div>
 
-  <div class="map-container">
-    <svg class="graph" id="graph2" height="450" width="660" viewbox="315 90 65 80"> </svg>
-  </div>
+            <div class="map-container">
+                <svg class="graph" id="graph2" height="450" width="660" viewbox="315 90 65 80"> </svg>
+            </div>
 
-  </div>
+        </div>
 
 
-    <div class="section">
-    <div class="desc-container">
-      <h2>College Education of Citizens Ages 55-64</h2>
-      <p class="desc-text">
-         Perhaps the happiness of today&rsquo;s society rests upon the education of our predecessors.
-      </p>
-      <p class="quote">&quot;Education is the premise of progress, in every society, in every family.&quot; &#8211;Kofi Annan</p>
-      <p class="source">Source: <a href="https://data.oecd.org/eduatt/population-with-tertiary-education.htm">OECD Data</a>, <a href="http://www.oecd.org/education/Ireland-EAG2014-Country-Note.pdf">OECD.org</a></p>
+        <div class="section">
+            <div class="desc-container">
+                <h2>College Education of Citizens Ages 55-64</h2>
+                <p class="desc-text">
+                    Perhaps the happiness of today&rsquo;s society rests upon the education of our predecessors.
+                </p>
+                <p class="quote">&quot;Education is the premise of progress, in every society, in every family.&quot; &#8211;Kofi Annan</p>
+                <p class="source">Source: <a href="https://data.oecd.org/eduatt/population-with-tertiary-education.htm">OECD Data</a>, <a href="http://www.oecd.org/education/Ireland-EAG2014-Country-Note.pdf">OECD.org</a></p>
 
-    <svg class="key" id="keys3" height="130" width="1000" viewbox="0 -300 1200 800">
+                <svg class="key" id="keys3" height="130" width="1000" viewbox="0 -300 1200 800">
         <defs>
           <linearGradient id="happinessGradient" x1="0" x2="1" y1="0" y2="0">
             <stop offset="0%" stop-color="#cc0000"/>
@@ -107,24 +107,24 @@
       </defs>
     </svg>
 
-  </div>
+            </div>
 
-  <div class="map-container">
-      <svg class="graph" id="graph3" height="450" width="660" viewbox="315 90 65 80"> </svg>
-  </div>
+            <div class="map-container">
+                <svg class="graph" id="graph3" height="450" width="660" viewbox="315 90 65 80"> </svg>
+            </div>
 
-  </div>
+        </div>
 
 
-  <div class="section">
-    <div class="desc-container">
-      <h2>Antidepressant Use per 1000 Citizens</h2>
-      <p class="desc-text">
-        Actually happy, or just well-medicated? Perhaps the contentment of countries is  manufactured through medication.
-      </p>
-      <p class="quote">&quot;Instead of removing the conditions that make people depressed modern society gives them antidepressant drugs.&quot; &#8211;Theodore J. Kaczynski</p>
-      <p class="source">Source: <a href="http://www.oecd-ilibrary.org/social-issues-migration-health/health-at-a-glance-2017/antidepressant-drugs-consumption-2000-and-2015-or-nearest-year_health_glance-2017-graph181-en">OECD iLibrary</a>, <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3686718/">NCBI</a></p>
-    <svg class="key" id="keys4" height="130" width="1000" viewbox="0 -300 1200 800">
+        <div class="section">
+            <div class="desc-container">
+                <h2>Antidepressant Use per 1000 Citizens</h2>
+                <p class="desc-text">
+                    Actually happy, or just well-medicated? Perhaps the contentment of countries is manufactured through medication.
+                </p>
+                <p class="quote">&quot;Instead of removing the conditions that make people depressed modern society gives them antidepressant drugs.&quot; &#8211;Theodore J. Kaczynski</p>
+                <p class="source">Source: <a href="http://www.oecd-ilibrary.org/social-issues-migration-health/health-at-a-glance-2017/antidepressant-drugs-consumption-2000-and-2015-or-nearest-year_health_glance-2017-graph181-en">OECD iLibrary</a>, <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3686718/">NCBI</a></p>
+                <svg class="key" id="keys4" height="130" width="1000" viewbox="0 -300 1200 800">
         <defs>
           <linearGradient id="happinessGradient" x1="0" x2="1" y1="0" y2="0">
             <stop offset="0%" stop-color="#cc0000"/>
@@ -134,21 +134,22 @@
           
       </defs>
     </svg>
-  </div>
+            </div>
 
-  <div class="map-container">
-    <svg class="graph" id="graph4" height="450" width="660" viewbox="315 90 65 80"> </svg>
-  </div>
+            <div class="map-container">
+                <svg class="graph" id="graph4" height="450" width="660" viewbox="315 90 65 80"> </svg>
+            </div>
 
-</div>
+        </div>
 
-<div class="section">
-    <div class="desc-container">
-      <h2>Comprehensive Cross-Data Comparison</h2>
-      <p class="desc-text">
-        Since the individual correlations are positive, we see that the amalgamation of all correlations (area of the polygon) is positively related to the happiness of the country.
-      </p>
-    <svg class="key" id="keys5" viewbox="0 -300 1200 800">
+        <div class="section">
+            <div class="desc-container">
+                <h2>Comprehensive Cross-Data Comparison</h2>
+                <p class="desc-text">
+                    And there you have it, our 4 keys to happiness.
+                </p>
+                <p class="quote">&quot;Whoever said money can't buy happiness simply didn't know where to go shopping.&quot; &#8211;Bo Derek</p>
+                <svg class="key" id="keys5" viewbox="0 -300 1200 800">
         <defs>
           <linearGradient id="happinessGradient" x1="0" x2="1" y1="0" y2="0">
             <stop offset="0%" stop-color="#cc0000"/>
@@ -158,23 +159,24 @@
 
       </defs>
     </svg>
-  </div>
+            </div>
 
-  <div class="map-container">
-    <svg height="450" width="660" id="graph5"> </svg>
-  </div>
+            <div class="map-container">
+                <svg height="450" width="660" id="graph5"> </svg>
+            </div>
 
-  </div>
-
-
+        </div>
 
 
 
-</div>
 
-<script src="script.js"></script>
+
+    </div>
+
+    <script src="script.js"></script>
 
 
 
 </body>
+
 </html>
