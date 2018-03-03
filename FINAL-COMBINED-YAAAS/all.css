@@ -1,8 +1,19 @@
+
 html, body {
-  font-family: Helvetica, sans-serif;
+  font-family: 'Playfair Display';
   font-weight: lighter;
   margin: 0;
   padding: 0;
+}
+
+body {
+  opacity: 1;
+  transition: 0.7s opacity;
+}
+
+body.fade {
+    opacity: 0;
+    transition: none;
 }
 
 
@@ -13,7 +24,7 @@ path.country {
 }
 
 text {
-  font-family: Helvetica;
+  font-family: 'Playfair Display';
   font-weight: lighter;
 }
 
@@ -21,6 +32,13 @@ text {
   alignment-baseline: middle;
   font-size: 60px;
   fill: black;
+}
+
+.ital-key-text {
+  alignment-baseline: middle;
+  font-size: 60px;
+  fill: black;
+  font-style: italic;
 }
 
 
@@ -31,7 +49,7 @@ text {
 
 header {
   margin-top: 4%;
-  margin-bottom: 4%;
+  margin-bottom: 3%;
   margin-left: auto;
   margin-right: auto;
   width: 960px;
@@ -90,7 +108,7 @@ svg {
   background-color: #f5eee5;
 
   width: 240px;
-  height: 450px;
+  min-height: 450px;
   padding: 10px 12px;
   display: inline-block;
   vertical-align: top;
@@ -106,15 +124,25 @@ h2 {
   text-align: left;
   /*position: absolute;*/
   z-index: 1;
-  font-size: 14px;
+  font-size: 15px;
   /*padding-left: 4px;*/
 
   margin: 5px 0;
 }
 
+.quote {
+  margin-top: 2px;
+  font-style: italic;
+  font-size: 12px;
+  color: #7f7f7f;
+}
+
 .source {
   font-size: 10px;
+  
 }
+
+
 
 /* svg */
 /*.graph { 

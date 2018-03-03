@@ -1,145 +1,15 @@
-<html>
-<head>
-  <title>3300 P1 - Stephanie</title>
-  <link href="https://fonts.googleapis.com/css?family=Barlow+Condensed" rel="stylesheet">
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/default.min.css">
-  <link rel="stylesheet" type="text/css" href="all.css">
-  <script src="https://d3js.org/d3.v4.min.js"></script>
-  <script src="http://d3js.org/topojson.v2.min.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js"></script>
-</head>
 
-<body>
-<!-- Europe: viewbox="450 160 200 300" -->
-<!-- world: viewbox="320 90 300 350" -->
-<!-- viewbox="500 45 60 115"  -->
-
-<div id="content">
-  <!-- DEFINING ALL SVG ELEMENTS FOR  MAPS AND MAP KEYS  -->
-  <header>
-    <h1 id="title">What makes a country <span id="highlight">happy</span>?</h1>
-    <h3 id="subtitle">
-       Citizen happiness is used to justify everything from wide-sweeping policies to regime changes. It is the backbone of political campaigns, and a topic constantly up for contentious debate. Understanding the source of happiness is crucial to ensuring a country&rsquo;s prosperity and its citizens&rsquo; wellbeing. In our research project, we aimed to tackle these questions for developed European OECD countries by finding surprising correlations between various variables and the happiness of each nation (measured by the <a href="http://worldhappiness.report/ed/2017/"> 2017 World Happiness Report</a>).
-
-    </h3>
-  </header>
+document.addEventListener("DOMContentLoaded", function(e) {
+    document.body.classList.remove('fade');
+  });
 
 
-  <div class="section">
-    
-    <div class="desc-container">
-      <h2>Government Health Expenditure</h2>
-      <p class="desc-text">
-        A healthy populace makes for a happy one. Governments that invest in the health of their citizens tend to have happier populations. &quot;It is health that is real wealth not pieces of gold and silver.&quot; &#95; Mahatma Gandhi
-        <p class="source">Data: <a href="https://www.gapminder.org/data">GapMinder</a></p>
-
-      </p>
-
-      <svg class="key" id="keys1" viewbox="0 -300 1200 800">
-          <!-- gradient definition -->
-          <defs>
-            <linearGradient id="happinessGradient" x1="0" x2="0" y1="0" y2="1">
-              <stop offset="0%" stop-color="#329932"/>
-              <stop offset="50%" stop-color="#ffff00"/>
-              <stop offset="100%" stop-color="#cc0000"/>
-            </linearGradient>
-          </defs>
-      </svg>
-    </div>
-
-    <div class="map-container">
-      <svg class="graph" id="graph1" height="450" width="660" viewbox="315 90 65 80"></svg>
-    </div>
-
-  </div>
-
-
-  <div class="section">
-    <div class="desc-container">
-      <h2>Bureaucratic Honesty</h2>
-      <p class="desc-text">
-        Take root and flourish inconspicuous motes of rock and gas. Tendrils of gossamer clouds finite but unbounded Apollonius of Perga preserve and cherish that pale blue dot. 
-      </p>
-    
-    <svg class="key" id="keys2" height="450" width="660" viewbox="0 -300 1200 800">
-        <defs>
-          <linearGradient id="happinessGradient" x1="0" x2="1" y1="0" y2="0">
-            <stop offset="0%" stop-color="#cc0000"/>
-            <stop offset="50%" stop-color="#ffff00"/>
-            <stop offset="100%" stop-color="#329932"/>
-          </linearGradient>
-          
-      </defs>
-    </svg>
-  </div>
-
-  <div class="map-container">
-    <svg class="graph" id="graph2" height="450" width="660" viewbox="315 90 65 80"> </svg>
-  </div>
-
-  </div>
-
-
-    <div class="section">
-    <div class="desc-container">
-      <h2>Tertiary Education of 55 to 64 year olds</h2>
-      <p class="desc-text">
-        Take root and flourish inconspicuous motes of rock and gas. Tendrils of gossamer clouds finite but unbounded Apollonius of Perga preserve and cherish that pale blue dot.
-      </p>
-
-    <svg class="key" id="keys3" height="130" width="1000" viewbox="0 -300 1200 800">
-        <defs>
-          <linearGradient id="happinessGradient" x1="0" x2="1" y1="0" y2="0">
-            <stop offset="0%" stop-color="#cc0000"/>
-            <stop offset="50%" stop-color="#ffff00"/>
-            <stop offset="100%" stop-color="#329932"/>
-          </linearGradient>
-          
-      </defs>
-    </svg>
-
-  </div>
-
-  <div class="map-container">
-      <svg class="graph" id="graph3" height="450" width="660" viewbox="315 90 65 80"> </svg>
-  </div>
-
-  </div>
-
-
-  <div class="section">
-    <div class="desc-container">
-      <h2>Antidepressant Use</h2>
-      <p class="desc-text">
-        Take root and flourish inconspicuous motes of rock and gas. Tendrils of gossamer clouds finite but unbounded Apollonius of Perga preserve and cherish that pale blue dot.
-      </p>
-    <svg class="key" id="keys4" height="130" width="1000" viewbox="0 -300 1200 800">
-        <defs>
-          <linearGradient id="happinessGradient" x1="0" x2="1" y1="0" y2="0">
-            <stop offset="0%" stop-color="#cc0000"/>
-            <stop offset="50%" stop-color="#ffff00"/>
-            <stop offset="100%" stop-color="#329932"/>
-          </linearGradient>
-          
-      </defs>
-    </svg>
-  </div>
-
-  <div class="map-container">
-    <svg class="graph" id="graph4" height="450" width="660" viewbox="315 90 65 80"> </svg>
-  </div>
-
-</div>
-</div>
-
-
-
-<script>
 // DEFINING SVG VARIABLES IN D3
 var svg1 = d3.select("#graph1");
 var svg2 = d3.select("#graph2");
 var svg3 = d3.select("#graph3");
 var svg4 = d3.select("#graph4");
+var svg5 = d3.select("#graph5");
 
 
 // DEFINING SOME VARIABLES AND SCALES
@@ -147,7 +17,6 @@ var projection = d3.geoEquirectangular().scale(75);
 var pathGenerator = d3.geoPath().projection(projection);
 
 var happinessColors = ['#cc0000', '#ffff00', '#329932']
-
 var percentScale = d3.scaleLinear().domain([5.19, 6.36, 7.53]).range(happinessColors);
 
 var countries;
@@ -200,14 +69,16 @@ var transformHelper= function(x, y, imageHelperUsed, dataPoint) {
 // DEFINING ALL IMAGE MAKING FUNCTIONS FOR HEALTH, CORRUPTION, EDUCATION , PILLS
 
 //HEALTH
+var healthImageConstant= .00004;
 
-// Health data to linear scale
-var linearHealthScale= d3.scaleLinear()
-//VALUES TO BE CHANGED
-.domain([0, 4437])
-.range([0, 0.0005]);
+var healthPercentileScale = d3.scaleQuantile()
+.domain([438.7428921, 1277.69566, 2933.400094, 3735.9829, 6905.530344])
+.range([1, 2, 4, 8]);
 
-// Health sizing
+var linearHealthScale= function (health) {
+  return healthImageConstant * healthPercentileScale(health)
+};
+
 var healthImageHelper= function(healthData) {
   return to_string_scale(areaScale(linearHealthScale(healthData)));
 };
@@ -216,21 +87,33 @@ var healthGeneratorMap= function (d) {
   // console.log("MAP");
   // console.log(projection(d.coordinates)[0],projection(d.coordinates)[1],d.health);
   var image= svg1.append("g")
-  .attr("transform", transformHelper(projection(d.coordinates)[0], 
-    projection(d.coordinates)[1], 
+  .attr("transform", transformHelper(projection(d.coordinates)[0],
+    projection(d.coordinates)[1],
     healthImageHelper, d.health));
     healthImageManipulator(image);
 }
 
-var healthGeneratorKey= function (arr) {
+var healthGeneratorKey= function (arrInput,svgInput) {
   // console.log("KEY");
   // console.log(arr[0],arr[1],arr[2]);
-  var image= d3.select("#keys1").append("g")
-  .attr("transform", transformHelper(arr[0], 
-    arr[1], 
-    healthImageHelper, arr[2]));
+  var image= d3.select(svgInput).append("g")
+  .attr("transform", transformHelper(arrInput[0],
+    arrInput[1],
+    healthImageHelper, arrInput[2]));
   var adjustedimage= image.append("g")
-  .attr("transform", "scale(" + (100/23) + "," +  (100/23) + ")");
+  .attr("transform", "scale(" + ((45/8)*(1200/240)) + "," +  ((45/8)*(1200/240)) + ")");
+  healthImageManipulator(adjustedimage);
+}
+
+var healthGeneratorKeyCircle = function (arrInput,svgInput) {
+  // console.log("KEY");
+  // console.log(arr[0],arr[1],arr[2]);
+  var image= d3.select(svgInput).append("g")
+  .attr("transform", transformHelper(arrInput[0],
+    arrInput[1],
+    healthImageHelper, arrInput[2]));
+  var adjustedimage= image.append("g")
+  .attr("transform", "scale(" + (13) + "," +  (13) + ")");
   healthImageManipulator(adjustedimage);
 }
 
@@ -256,37 +139,49 @@ var healthImageManipulator = function(image){
 
 
 
-
-
 //CORRUPTION
 
-// Corruption data to linear scale
-var linearCorruptionScale= d3.scaleLinear()
-//VALUES TO BE CHANGED
-.domain([0, 100])
-.range([0, 0.0001]);
+var corruptionImageConstant= .00001;
 
-// Corruption sizing
+var linearCorruptionScale= function (corruption) {
+  return corruptionImageConstant * corruptionPercentileScale(corruption)
+};
+
+var corruptionPercentileScale= d3.scaleQuantile()
+.domain([41, 57.5, 70, 81, 90])
+.range([1, 2, 4, 8]);
+
 var corruptionImageHelper= function(corruptionData) {
   return to_string_scale(areaScale(linearCorruptionScale(corruptionData)));
 };
 
 var corruptionGeneratorMap= function (d) {
   var image= svg2.append("g")
-  .attr("transform", transformHelper(projection(d.coordinates)[0], 
-    projection(d.coordinates)[1], 
-    corruptionImageHelper, d.corruption)); 
+  .attr("transform", transformHelper(projection(d.coordinates)[0],
+    projection(d.coordinates)[1],
+    corruptionImageHelper, d.corruption));
   corruptionImageManipulator(image);
 }
 
-var corruptionGeneratorKey= function (arr) {
-  
-  var image= d3.select("#keys2").append("g")
-  .attr("transform", transformHelper(arr[0], 
-    arr[1], 
+var corruptionGeneratorKey= function (arr,svg) {
+
+  var image= d3.select(svg).append("g")
+  .attr("transform", transformHelper(arr[0],
+    arr[1],
     corruptionImageHelper, arr[2]));
   var adjustedimage= image.append("g")
-  .attr("transform", "scale(" + (100/23) + "," +  (100/23) + ")");
+  .attr("transform", "scale(" + ((45/8)*(1200/240)) + "," +  ((45/8)*(1200/240)) + ")");
+  corruptionImageManipulator(adjustedimage);
+}
+
+var corruptionGeneratorKeyCircle = function (arr,svg) {
+
+  var image= d3.select(svg).append("g")
+  .attr("transform", transformHelper(arr[0],
+    arr[1],
+    corruptionImageHelper, arr[2]));
+  var adjustedimage= image.append("g")
+  .attr("transform", "scale(" + (10) + "," +  (10) + ")");
   corruptionImageManipulator(adjustedimage);
 }
 
@@ -368,33 +263,47 @@ var corruptionImageManipulator = function(image){
 
 //EDUCATION
 
-// education data to linear scale
-var linearEducationScale= d3.scaleLinear()
-//VALUES TO BE CHANGED
-.domain([0, 100])
-.range([0, 0.0005]);
+var educationImageConstant= .00002;
 
-// Education sizing
+var linearEducationScale= function (education) {
+  return educationImageConstant * educationPercentileScale(education)
+};
+
+var educationPercentileScale= d3.scaleQuantile()
+.domain([10.2, 18.15, 26.3, 30.35, 47.6])
+.range([1, 2, 4, 8]);
+
 var educationImageHelper= function(educationData) {
   return to_string_scale(areaScale(linearEducationScale(educationData)));
 };
 
 var educationGeneratorMap= function (d) {
   var image= svg3.append("g")
-  .attr("transform", transformHelper(projection(d.coordinates)[0], 
-    projection(d.coordinates)[1], 
-    educationImageHelper, d.education)); 
+  .attr("transform", transformHelper(projection(d.coordinates)[0],
+    projection(d.coordinates)[1],
+    educationImageHelper, d.education));
   educationImageManipulator(image);
 }
 
-var educationGeneratorKey= function (arr) {
-  
-  var image= d3.select("#keys3").append("g")
-  .attr("transform", transformHelper(arr[0], 
-    arr[1], 
+var educationGeneratorKey= function (arr,svg) {
+
+  var image= d3.select(svg).append("g")
+  .attr("transform", transformHelper(arr[0],
+    arr[1],
     educationImageHelper, arr[2]));
   var adjustedimage= image.append("g")
-  .attr("transform", "scale(" + (100/23) + "," +  (100/23) + ")");
+  .attr("transform", "scale(" + ((45/8)*(1200/240)) + "," +  ((45/8)*(1200/240)) + ")");
+  educationImageManipulator(adjustedimage);
+}
+
+var educationGeneratorKeyCircle= function (arr,svg) {
+
+  var image= d3.select(svg).append("g")
+  .attr("transform", transformHelper(arr[0],
+    arr[1],
+    educationImageHelper, arr[2]));
+  var adjustedimage= image.append("g")
+  .attr("transform", "scale(" + (13) + "," +  (13) + ")");
   educationImageManipulator(adjustedimage);
 }
 
@@ -458,15 +367,15 @@ var educationImageManipulator = function(image){
 
 
 
-
 //PILLS
 
-// Pill data to linear scale
-var linearPillsScale= d3.scaleLinear()
-.domain([0, 1000])
-.range([0, 0.15]);
+var pillsImageConstant= 0.0009;
 
-// Pill sizing
+var linearPillsScale= function (pills) {
+  return pillsImageConstant * pillsPercentileScale(pills)
+};
+
+
 var pillsImageHelper= function(pillsData) {
   return to_string_scale(areaScale(linearPillsScale(pillsData)));
 };
@@ -475,19 +384,29 @@ var pillsImageHelper= function(pillsData) {
 
 var pillGeneratorMap= function (d) {
   var image= svg4.append("g")
-  .attr("transform", transformHelper(projection(d.coordinates)[0], 
-    projection(d.coordinates)[1], 
+  .attr("transform", transformHelper(projection(d.coordinates)[0],
+    projection(d.coordinates)[1],
     pillsImageHelper, d.pills));
   pillsImageManipulator(image);
 }
 
-var pillGeneratorKey= function (arr) {
-  var image= d3.select("#keys4").append("g")
-  .attr("transform", transformHelper(arr[0], 
-    arr[1], 
+var pillGeneratorKey= function (arr,svg) {
+  var image= d3.select(svg).append("g")
+  .attr("transform", transformHelper(arr[0],
+    arr[1],
     pillsImageHelper, arr[2]));
   var adjustedimage= image.append("g")
-  .attr("transform", "scale(" + (100/23) + "," +  (100/23) + ")");
+  .attr("transform", "scale(" + ((45/8)*(1200/240)) + "," +  ((45/8)*(1200/240)) + ")");
+  pillsImageManipulator(adjustedimage);
+}
+
+var pillGeneratorKeyCircle= function (arr,svg) {
+  var image= d3.select(svg).append("g")
+  .attr("transform", transformHelper(arr[0],
+    arr[1],
+    pillsImageHelper, arr[2]));
+  var adjustedimage= image.append("g")
+  .attr("transform", "scale(" + (12) + "," + (12) + ")");
   pillsImageManipulator(adjustedimage);
 }
 
@@ -515,7 +434,395 @@ var pillsImageManipulator = function(image){
 }
 
 
+var pillsPercentileScale= d3.scaleQuantile()
+.domain([12.3, 44.75, 55, 70.65, 129.6])
+.range([1, 2, 4, 8]);
 
+////////////////
+
+// Circles for Summary Plot
+
+var circleHealthScale= d3.scaleLinear()
+.domain([438.742892, 6905.53034])
+.range([10, 30]);
+
+var circleCorruptionScale= d3.scaleLinear()
+.domain([41, 90])
+.range([10, 30]);
+
+
+var circleEducationScale= d3.scaleLinear()
+.domain([10.02, 47.6])
+.range([10, 30]);
+
+
+var circlePillsScale= d3.scaleLinear()
+.domain([12.3, 129.6])
+.range([10, 30]);
+
+var circleEnlarge= (450/85)/4;
+
+var xCircles= function(x) {
+  return (circleEnlarge*35) + ((x-1)*(660 - (circleEnlarge*35) - (circleEnlarge*35))/6)
+};
+
+var yCircles= function(y) {
+  return (circleEnlarge*35) + ((y-1)*(450 - (circleEnlarge*35) - (circleEnlarge*45))/3)
+};
+
+var circlePathFormer = function (d){
+
+    var pathstring =  'M 0 ' + circleHealthScale(d.health) + ' L ' + circleCorruptionScale(d.corruption) + ' 0 '
+    + '0 ' +  (-1 * circleEducationScale(d.education)) + ' ' + (-1 * circlePillsScale(d.pills)) + ' 0 Z' ;
+
+    //var fillcolorString = percentScale(d.happiness);
+
+    return pathstring;
+
+  }
+
+var graphingPositions= [
+  {"x": 1, "y":1}, {"x": 2, "y":1}, {"x": 3, "y":1}, {"x": 4, "y":1}, {"x": 5, "y":1}, {"x": 6, "y":1}, {"x": 7, "y":1},
+  {"x": 1, "y":2}, {"x": 2, "y":2}, {"x": 3, "y":2}, {"x": 4, "y":2}, {"x": 5, "y":2}, {"x": 6, "y":2}, {"x": 7, "y":2},
+  {"x": 1, "y":3}, {"x": 2, "y":3}, {"x": 3, "y":3}, {"x": 4, "y":3}, {"x": 5, "y":3}, {"x": 6, "y":3}, {"x": 7, "y":3},
+  {"x": 1, "y":4}, {"x": 2, "y":4}, {"x": 3, "y":4}, {"x": 4, "y":4}, {"x": 5, "y":4}, {"x": 6, "y":4}];
+
+var circleGenerator= function (d, xtransform, ytransform) {
+  //TODO: Select the correct SVG
+  var image= svg5.append("g")
+  .attr("transform", "translate(" + xCircles(xtransform) + "," + yCircles(ytransform) + ")");
+
+  var innerimage= image.append("g")
+  .attr("transform", "scale(" + circleEnlarge + "," + circleEnlarge + ")");
+
+  innerimage.append("circle")
+  .attr("r", 1);
+
+  innerimage.append("circle")
+  .attr("r", 10)
+  .style("stroke-width", 1)
+  .style("stroke", "pink")
+  .style("fill", "none");
+
+  innerimage.append("circle")
+  .attr("r", 20)
+  .style("stroke-width", 1)
+  .style("stroke", "violet")
+  .style("fill", "none");
+
+  innerimage.append("circle")
+  .attr("r", 30)
+  .style("stroke-width", 1)
+  .style("stroke", "magenta")
+  .style("fill", "none");
+
+  innerimage.append("path")
+  .attr("d", circlePathFormer(d))
+  .style("opacity", 0.85)
+  .style("fill", "" + percentScale(d.happiness));
+
+  innerimage.append("text")
+  .text(d.country)
+  .attr("x", 0)
+  .attr("y", 40)
+  .attr("text-anchor", "middle")
+  .attr("alignment-baseline", "middle")
+  .attr("font-size", 8)
+  .attr("fill", "black")
+
+};
+
+var svg6= d3.select("#keys5");
+
+var circleLegend= svg6.append("g")
+.attr("id", "circleLegend")
+.attr("transform", "translate (615, 130) scale(4.2, 4.2)");
+
+circleLegend.append("rect")
+.attr("x", -150)
+.attr("y", -150)
+.attr("height", 300)
+.attr("width", 300)
+.style("fill", "white");
+
+circleLegend.append("circle")
+.attr("r", 1);
+
+ circleLegend.append("circle")
+  .attr("r", 30)
+  .style("stroke-width", 1)
+  .style("stroke", "pink")
+  .style("fill", "none");
+
+  circleLegend.append("circle")
+  .attr("r", 60)
+  .style("stroke-width", 1)
+  .style("stroke", "violet")
+  .style("fill", "none");
+
+  circleLegend.append("circle")
+  .attr("r", 90)
+  .style("stroke-width", 1)
+  .style("stroke", "magenta")
+  .style("fill", "none");
+
+//HEALTH VALUES : 438.742892, , 6905.53034
+
+  circleLegend.append("text")
+  .text("439")
+  .attr("x", 0)
+  .attr("y", -30)
+  .attr("text-anchor", "middle")
+  .attr("alignment-baseline", "middle")
+  .attr("font-size", 11)
+  .attr("fill", "black")
+  //.style("font-weight","bold")
+
+  circleLegend.append("text")
+  .text("3672")
+  .attr("x", 0)
+  .attr("y", -60)
+  .attr("text-anchor", "middle")
+  .attr("alignment-baseline", "middle")
+  .attr("font-size", 11)
+  .attr("fill", "black")
+  //.style("font-weight", "bold")
+
+  circleLegend.append("text")
+  .text("6906")
+  .attr("x", 0)
+  .attr("y", -90)
+  .attr("text-anchor", "middle")
+  .attr("alignment-baseline", "middle")
+  .attr("font-size", 11)
+  .attr("fill", "black")
+  //.style("font-weight","bold")
+
+  circleLegend.append("text")
+  .text("GOVT. HEALTH EXPENDITURE ($/person)")
+  .attr("x", 0)
+  .attr("y", -110)
+  .attr("text-anchor", "middle")
+  .attr("alignment-baseline", "middle")
+  .attr("font-size", 9)
+  .attr("fill", "black")
+  .style("font-weight","bold")
+
+
+
+  //BUREAUCRATIC HONESTY VALUES : 41, 65.5, 90
+
+  circleLegend.append("text")
+  .text("41")
+  .attr("x", 30)
+  .attr("y", 0)
+  .attr("text-anchor", "middle")
+  .attr("alignment-baseline", "middle")
+  .attr("font-size", 11)
+  .attr("fill", "black")
+  //.style("font-weight", "bold")
+
+  circleLegend.append("text")
+  .text("66")
+  .attr("x", 60)
+  .attr("y", 0)
+  .attr("text-anchor", "middle")
+  .attr("alignment-baseline", "middle")
+  .attr("font-size", 11)
+  .attr("fill", "black")
+  //.style("font-weight", "bold")
+
+  circleLegend.append("text")
+  .text("90")
+  .attr("x", 90)
+  .attr("y", 0)
+  .attr("text-anchor", "middle")
+  .attr("alignment-baseline", "middle")
+  .attr("font-size", 11)
+  .attr("fill", "black")
+  //.style("font-weight", "bold")
+
+  circleLegend.append("text")
+  .text("BUREAUCRATIC HONESTY (CPI 2016)")
+  .attr("x", 110)
+  .attr("y", 0)
+  .attr("text-anchor", "middle")
+  .attr("alignment-baseline", "middle")
+  .attr("font-size", 9)
+  .attr("fill", "black")
+  .attr("transform", "rotate (90,110,0)")
+  .style("font-weight", "bold")
+
+  //TERTIARY EDUCATION VALUES : 10.02, 28.81, 47.6
+
+  circleLegend.append("text")
+  .text("10")
+  .attr("x", 0)
+  .attr("y", 30)
+  .attr("text-anchor", "middle")
+  .attr("alignment-baseline", "middle")
+  .attr("font-size", 11)
+  .attr("fill", "black")
+  //.style("font-weight", "bold")
+
+  circleLegend.append("text")
+  //.style("font-weight", "bold")
+  .text("29")
+  .attr("x", 0)
+  .attr("y", 60)
+  .attr("text-anchor", "middle")
+  .attr("alignment-baseline", "middle")
+  .attr("font-size", 11)
+  .attr("fill", "black");
+  //.style("font-weight", "bold")
+
+  circleLegend.append("text")
+  .text("48")
+  .attr("x", 0)
+  .attr("y", 90)
+  .attr("text-anchor", "middle")
+  .attr("alignment-baseline", "middle")
+  .attr("font-size", 11)
+  .attr("fill", "black")
+  //.style("font-weight", "bold")
+
+  circleLegend.append("text")
+  .text("COLLEGE EDUCATED PEOPLE (AGE 55-64) (%)")
+  .attr("x", 0)
+  .attr("y", 110)
+  .attr("text-anchor", "middle")
+  .attr("alignment-baseline", "middle")
+  .attr("font-size", 9)
+  .attr("fill", "black")
+  .style("font-weight", "bold")
+
+
+//PILLS VALUES : 12.3, 70.95, 129.6
+
+  circleLegend.append("text")
+  .text("12")
+  .attr("x", -30)
+  .attr("y", 0)
+  .attr("text-anchor", "middle")
+  .attr("alignment-baseline", "middle")
+  .attr("font-size", 11)
+  .attr("fill", "black")
+  //.style("font-weight", "bold")
+
+  circleLegend.append("text")
+  .text("71")
+  .attr("x", -60)
+  .attr("y", 0)
+  .attr("text-anchor", "middle")
+  .attr("alignment-baseline", "middle")
+  .attr("font-size", 11)
+  .attr("fill", "black")
+  //.style("font-weight", "bold")
+
+  circleLegend.append("text")
+  .text("130")
+  .attr("x", -90)
+  .attr("y", 0)
+  .attr("text-anchor", "middle")
+  .attr("alignment-baseline", "middle")
+  .attr("font-size", 11)
+  .attr("fill", "black")
+  //.style("font-weight", "bold")
+
+  circleLegend.append("text")
+  .text("ANTIDEPRESSANTS USAGE( /1000 people)")
+  .attr("x", -110)
+  .attr("y", 0)
+  .attr("text-anchor", "middle")
+  .attr("alignment-baseline", "middle")
+  .attr("font-size", 9)
+  .attr("fill", "black")
+  .attr("transform", "rotate (-90,-110,0)")
+  .style("font-weight", "bold")
+
+  //ADDING MIN, MID, MAX VALUES
+
+  circleLegend.append("text")
+  .text("MIN")
+  .attr("x", -22)
+  .attr("y", -22)
+  .attr("text-anchor", "middle")
+  .attr("alignment-baseline", "middle")
+  .attr("font-size", 9)
+  .attr("fill", "black")
+  .style("font-weight", "bold")
+
+  circleLegend.append("text")
+  .text("MID")
+  .attr("x", -42.5)
+  .attr("y", -42.5)
+  .attr("text-anchor", "middle")
+  .attr("alignment-baseline", "middle")
+  .attr("font-size", 9)
+  .attr("fill", "black")
+  .style("font-weight", "bold")
+
+  circleLegend.append("text")
+  .text("MAX")
+  .attr("x", -65)
+  .attr("y", -65)
+  .attr("text-anchor", "middle")
+  .attr("alignment-baseline", "middle")
+  .attr("font-size", 9)
+  .attr("fill", "black")
+  .style("font-weight", "bold")
+
+
+
+  //ADDING DIRECTIONAL ARROWS
+
+  circleLegend.append("path")
+  .attr("d", "M 0 -10 L 0 -85 -15 -70 M 0 -85 L 15 -70 ")
+  .style("opacity", 0.2)
+  .style("fill", "none")
+  .style("stroke","blue")
+  .style("stroke-width",3)
+  .style("font-weight", "bold");
+
+  circleLegend.append("path")
+  .attr("d", "M 0 -10 L 0 -85 -15 -70 M 0 -85 L 15 -70 ")
+  .style("opacity", 0.2)
+  .style("fill", "none")
+  .style("stroke","blue")
+  .style("stroke-width",3)
+  .attr("transform", "rotate (90)")
+  .style("font-weight", "bold");
+
+  circleLegend.append("path")
+  .attr("d", "M 0 -10 L 0 -85 -15 -70 M 0 -85 L 15 -70 ")
+  .style("opacity", 0.2)
+  .style("fill", "none")
+  .style("stroke","blue")
+  .style("stroke-width",3)
+  .attr("transform", "rotate (180)")
+  .style("font-weight", "bold");
+
+  circleLegend.append("path")
+  .attr("d", "M 0 -10 L 0 -85 -15 -70 M 0 -85 L 15 -70 ")
+  .style("opacity", 0.2)
+  .style("fill", "none")
+  .style("stroke","blue")
+  .style("stroke-width",3)
+  .attr("transform", "rotate (270)")
+  .style("font-weight", "bold");
+
+//Generating images for all 4 variables in the circle legend
+
+healthGeneratorKeyCircle([0, -135, 0],"#circleLegend");
+corruptionGeneratorKeyCircle([ 130, 0, 0 ], "#circleLegend");
+educationGeneratorKeyCircle([ 0, 125, 0],"#circleLegend");
+pillGeneratorKeyCircle([-133,  0, 0 ], "#circleLegend");
+
+
+
+
+
+///////////////
 
 //LOADING DATA FILES
 d3.queue()
@@ -541,11 +848,11 @@ function callback (error, rawMap, rawISO) {
   });
 
   atlas = d3.map(rawISO, function (d) {
-    return Number(d.countryid); 
+    return Number(d.countryid);
   });
-  
+
   countries = topojson.feature(rawMap, rawMap.objects.countries);
-  
+
   //CREATING MAPS FOR ALL 4 MAPS SVGS
   showMap(percentScale, "happiness", svg1);
   showMap(percentScale, "happiness", svg2);
@@ -561,7 +868,7 @@ function callback (error, rawMap, rawISO) {
   makeEducationScale("#keys3");
   makeHappyScale("#keys4");
   makePillsScale("#keys4");
-  
+
   //CALLING IMAGE MAKING FUNCTIONS FOR ALL 4 TYPES OF IMAGES
   rawcsvdata.forEach(function (d) {
     pillGeneratorMap(d)
@@ -570,6 +877,9 @@ function callback (error, rawMap, rawISO) {
     educationGeneratorMap(d);
   });
 
+  rawcsvdata.forEach(function (d, i) {
+    circleGenerator(d, graphingPositions[i].x, graphingPositions[i].y);
+  });
 }
 
 
@@ -602,10 +912,9 @@ function showMap(scale, variable, svg) {
 }
 
 
-
 //CREATES HAPPINESS SCALE FOR PARTICULAR SVG
   function makeHappyScale(svg){
-
+    
     var svg = d3.select(svg);
 
     var textLabelHappiness = svg.append("text")
@@ -614,9 +923,7 @@ function showMap(scale, variable, svg) {
       .attr("y", "-450")
       .attr("text-anchor", "left")
       .attr("alignment-baseline", "middle")
-      .attr("font-size", "60")
-      .attr("font-family", "Palantino")
-      .attr("fill", "black");
+      .attr("font-size", "60");
 
     var gradient = svg.append("rect")
       .attr("x", "50")
@@ -628,52 +935,69 @@ function showMap(scale, variable, svg) {
       .attr("rx", "50");
 
     var happyImage= svg.append("g")
-      .attr("transform", "translate(210, -400) scale(.28)");
+      .attr("transform", "translate(210, -370) scale(.28)");
 
     /** sad image **/
     var sadImage= svg.append("g")
-      .attr("transform", "translate(210, 570) scale(.28)");
+      .attr("transform", "translate(210, 540) scale(.28)");
+
 
     happyImage.append("path")
     .attr("d", "M409.132,109.205c-19.608-33.592-46.205-60.189-79.798-79.796C295.733,9.803,259.054,0.002,219.273,0.002 c-39.781,0-76.47,9.801-110.063,29.407c-33.595,19.604-60.192,46.201-79.8,79.796C9.801,142.802,0,179.491,0,219.269 c0,39.78,9.804,76.463,29.407,110.062c19.607,33.592,46.204,60.189,79.799,79.798c33.597,19.603,70.283,29.403,110.063,29.403 s76.47-9.801,110.065-29.403c33.593-19.608,60.189-46.206,79.795-79.798c19.603-33.599,29.403-70.284,29.403-110.062 C438.533,179.487,428.732,142.797,409.132,109.205z M387.433,290.215c-9.709,22.556-22.696,41.973-38.969,58.245 c-16.271,16.269-35.689,29.26-58.245,38.965c-22.555,9.712-46.202,14.564-70.946,14.564c-24.744,0-48.391-4.859-70.948-14.564 c-22.554-9.705-41.971-22.696-58.245-38.965c-16.269-16.275-29.259-35.687-38.97-58.245 c-9.707-22.552-14.562-46.206-14.562-70.946c0-24.744,4.854-48.391,14.562-70.948c9.707-22.554,22.697-41.968,38.97-58.245 c16.274-16.269,35.691-29.26,58.245-38.97c22.554-9.704,46.205-14.558,70.948-14.558c24.74,0,48.395,4.851,70.946,14.558 c22.556,9.707,41.97,22.698,58.245,38.97c16.272,16.274,29.26,35.688,38.969,58.245c9.709,22.554,14.564,46.201,14.564,70.948 C402.001,244.013,397.142,267.666,387.433,290.215z")
-
     happyImage.append("path")
     .attr("d", "M312.06,247.533c-4.757-1.532-9.418-1.136-13.99,1.144s-7.617,5.899-9.13,10.849 c-4.754,15.229-13.562,27.555-26.412,36.973c-12.844,9.421-27.265,14.134-43.255,14.134c-15.986,0-30.402-4.716-43.252-14.134 c-12.847-9.421-21.65-21.744-26.409-36.973c-1.521-4.949-4.521-8.569-8.992-10.849c-4.473-2.279-9.087-2.676-13.846-1.144 c-4.949,1.52-8.564,4.518-10.85,8.987c-2.284,4.469-2.666,9.096-1.141,13.846c7.039,23.038,20.173,41.593,39.397,55.679 c19.226,14.086,40.924,21.121,65.096,21.121c24.169,0,45.873-7.035,65.098-21.121c19.212-14.093,32.347-32.641,39.389-55.679 c1.533-4.75,1.15-9.377-1.136-13.846C320.334,252.051,316.81,249.061,312.06,247.533z")
-
     happyImage.append("path")
     .attr("d", "M146.181,182.727c10.085,0,18.699-3.576,25.837-10.709c7.139-7.135,10.708-15.749,10.708-25.837 c0-10.089-3.569-18.699-10.708-25.837s-15.752-10.709-25.837-10.709c-10.088,0-18.702,3.571-25.84,10.709 c-7.135,7.139-10.707,15.749-10.707,25.837c0,10.088,3.568,18.702,10.707,25.837C127.482,179.154,136.092,182.727,146.181,182.727 z")
-
     happyImage.append("path")
     .attr("d", "M292.359,109.633c-10.089,0-18.706,3.571-25.845,10.709c-7.132,7.139-10.708,15.749-10.708,25.837 c0,10.088,3.576,18.702,10.708,25.837c7.139,7.137,15.756,10.709,25.845,10.709c10.081,0,18.698-3.576,25.837-10.709 c7.139-7.135,10.708-15.749,10.708-25.837c0-10.089-3.569-18.699-10.708-25.837S302.44,109.633,292.359,109.633z")
 
 
     sadImage.append("path")
       .attr("d", "M409.133,109.203c-19.608-33.592-46.205-60.189-79.798-79.796C295.736,9.801,259.058,0,219.273,0 c-39.781,0-76.47,9.801-110.063,29.407c-33.595,19.604-60.192,46.201-79.8,79.796C9.801,142.8,0,179.489,0,219.267 c0,39.78,9.804,76.463,29.407,110.062c19.607,33.592,46.204,60.189,79.799,79.798c33.597,19.605,70.283,29.407,110.063,29.407 s76.47-9.802,110.065-29.407c33.593-19.602,60.189-46.206,79.795-79.798c19.603-33.596,29.403-70.284,29.403-110.062 C438.533,179.485,428.732,142.795,409.133,109.203z M387.434,290.213c-9.709,22.556-22.696,41.97-38.969,58.245 c-16.271,16.269-35.689,29.26-58.245,38.965c-22.555,9.712-46.202,14.564-70.946,14.564c-24.744,0-48.391-4.853-70.948-14.564 c-22.554-9.705-41.971-22.696-58.245-38.965c-16.269-16.275-29.259-35.687-38.97-58.245 c-9.707-22.552-14.562-46.206-14.562-70.946c0-24.744,4.854-48.391,14.562-70.948c9.707-22.554,22.697-41.968,38.97-58.245 c16.274-16.269,35.691-29.26,58.245-38.97c22.554-9.704,46.205-14.558,70.948-14.558c24.74,0,48.395,4.851,70.946,14.558 c22.556,9.707,41.97,22.698,58.245,38.97c16.272,16.274,29.26,35.688,38.969,58.245c9.709,22.554,14.564,46.201,14.564,70.948 C402.002,244.011,397.143,267.664,387.434,290.213z")
-
     sadImage.append("path")
       .attr("d", "M284.368,258.668c-19.219-14.086-40.926-21.129-65.095-21.129c-24.172,0-45.871,7.039-65.096,21.129 c-19.224,14.085-32.358,32.641-39.397,55.671c-1.521,4.757-1.143,9.381,1.141,13.847c2.286,4.469,5.898,7.467,10.85,8.993 c4.758,1.526,9.373,1.143,13.846-1.144c4.471-2.285,7.467-5.899,8.991-10.848c4.759-15.235,13.562-27.556,26.409-36.979 c12.847-9.418,27.263-14.127,43.252-14.127c15.987,0,30.412,4.712,43.251,14.127c12.854,9.424,21.655,21.744,26.412,36.979 c1.52,4.948,4.564,8.562,9.134,10.848c4.568,2.286,9.236,2.67,13.989,1.144c4.761-1.526,8.278-4.524,10.564-8.993 c2.286-4.466,2.669-9.09,1.14-13.847C316.729,291.312,303.591,272.75,284.368,258.668z")
-
     sadImage.append("path")
       .attr("d", "M146.181,182.725c10.085,0,18.699-3.576,25.837-10.709c7.139-7.135,10.708-15.749,10.708-25.837 c0-10.089-3.569-18.699-10.708-25.837s-15.752-10.709-25.837-10.709c-10.088,0-18.702,3.571-25.84,10.709 c-7.135,7.139-10.707,15.749-10.707,25.837c0,10.088,3.568,18.702,10.707,25.837C127.482,179.152,136.093,182.725,146.181,182.725 z")
-
     sadImage.append("path")
       .attr("d", "M292.359,109.631c-10.089,0-18.706,3.571-25.845,10.709c-7.132,7.139-10.708,15.749-10.708,25.837 c0,10.088,3.576,18.702,10.708,25.837c7.139,7.137,15.756,10.709,25.845,10.709c10.081,0,18.698-3.576,25.837-10.709 c7.139-7.135,10.708-15.749,10.708-25.837c0-10.089-3.569-18.699-10.708-25.837S302.44,109.631,292.359,109.631z")
     }
 
 
 /** IMAGE KEY FUNCTIONS & VARS **/
-  var xPosSideText = 950;
+  var xPosSideText = 870;
   var iconRectWidth = 350;
   var iconRectHeight = 1100;
 
-  var iconX = 750;
+  var iconX = 670;
+
+
+  var quart1YPos = -330;
+  var values1YPos = quart1YPos + 80;
+  
+  var quart2YPos = -20;
+  var values2YPos = quart2YPos + 80;
+  
+  var quart3YPos = 280;
+  var values3YPos = quart3YPos + 80;
+
+  var quart4YPos = 550;
+  var values4YPos = quart4YPos + 80;
+
 
   function makeTextLabel(mySVG, string, xPos, yPos) {
     return mySVG.append("text")
         .text(string)
         .attr("x", xPos)
         .attr("y", yPos)
-        .attr("class", "key-text")
+        .attr("class", "key-text");
+  }
+
+  function makeTextLabelItalic(mySVG, string, xPos, yPos) {
+    return mySVG.append("text")
+        .text(string)
+        .attr("x", xPos)
+        .attr("y", yPos)
+        .attr("class", "ital-key-text");
   }
 
   function makeRect(mySVG, xPos, yPos, rectW, rectH) {
@@ -683,176 +1007,173 @@ function showMap(scale, variable, svg) {
       .attr("width", rectW)
       .attr("height", rectH)
       .attr("fill","white")
-      .attr("rx", "50")
+      .attr("rx", "50");
   }
 
 
 //MAKES VARIABLE SCALE FOR THE PARTICULAR SVG
-    function makeHealthScale(svg){
+    function makeHealthScale(svg_string){
 
-      var svg = d3.select(svg);
+      var svg = d3.select(svg_string);
 
       var textLabelVar = svg.append("text")
-      .text("Expenditure ($)")
-      .attr("x", "580")
+      .text("Expenditure ($/person)")
+      .attr("x", "500")
       .attr("y", "-450")
       .attr("class", "key-text");
       
-      makeRect(svg, 580, -400, iconRectWidth, iconRectHeight);
+      makeRect(svg, 500, -400, iconRectWidth, iconRectHeight);
 
-      makeTextLabel(svg, "4th Q", xPosSideText, -300);
-      makeTextLabel(svg, "(100, 50)", xPosSideText, -220);
+      makeTextLabel(svg, "4th Quartile", xPosSideText, quart1YPos);
+      makeTextLabelItalic(svg, "[3756, 6906]", xPosSideText, values1YPos);
 
-      makeTextLabel(svg, "3rd Q", xPosSideText, -20);
-      makeTextLabel(svg, "(50, 30)", xPosSideText, 50);
+      makeTextLabel(svg, "3rd Quartile", xPosSideText, quart2YPos);
+      makeTextLabelItalic(svg, "[2933, 3756)", xPosSideText, values2YPos);
 
-      makeTextLabel(svg, "2nd Q", xPosSideText, 280);
-      makeTextLabel(svg, "(30, 20)", xPosSideText, 360);
+      makeTextLabel(svg, "2nd Quartile", xPosSideText, quart3YPos);
+      makeTextLabelItalic(svg, "[1278, 2933)", xPosSideText, values3YPos);
 
-      makeTextLabel(svg, "1st Q", xPosSideText, 600);
-      makeTextLabel(svg, "(20, 0)", xPosSideText, 680);
+      makeTextLabel(svg, "1st Quartile", xPosSideText, quart4YPos);
+      makeTextLabelItalic(svg, "[439, 1278)", xPosSideText, values4YPos);
 
 
       var imageArrays = [
-        [iconX,-250,6905],
-        [iconX,0,5288.25],
-        [iconX,250,3671.5],
-        [iconX,500,2054.75]
+        [iconX,-250,3735.9829],
+        [iconX,0,2933.400094],
+        [iconX,250,1277.69566],
+        [iconX,500,438.7428921]
       ]
 
+      // console.log(imageArrays)
+      // console.log(svg)
+
       imageArrays.forEach(function(arr){
-        healthGeneratorKey(arr);
+        console.log(arr)
+        healthGeneratorKey(arr,svg_string);
       });
 
     }
 
     
-    function makeCorruptionScale(svg){
+    function makeCorruptionScale(svg_string){
 
-      var svg = d3.select(svg);
+      var svg = d3.select(svg_string);
 
       var textLabelVar = svg.append("text")
-      .text("Expenditure ($)")
-      .attr("x", "580")
+      .text("Honesty (CPI)")
+      .attr("x", "500")
       .attr("y", "-450")
       .attr("class", "key-text");
 
-      makeRect(svg, 580, -400, iconRectWidth, iconRectHeight);
+      makeRect(svg, 500, -400, iconRectWidth, iconRectHeight);
 
-      makeTextLabel(svg, "4th Q", xPosSideText, -300);
-      makeTextLabel(svg, "(100, 50)", xPosSideText, -220);
+      makeTextLabel(svg, "4th Quartile", xPosSideText, quart1YPos);
+      makeTextLabelItalic(svg, "[81, 90]", xPosSideText, values1YPos);
 
-      makeTextLabel(svg, "3rd Q", xPosSideText, -20);
-      makeTextLabel(svg, "(50, 30)", xPosSideText, 50);
+      makeTextLabel(svg, "3rd Quartile", xPosSideText, quart2YPos);
+      makeTextLabelItalic(svg, "[70, 81)", xPosSideText, values2YPos);
 
-      makeTextLabel(svg, "2nd Q", xPosSideText, 280);
-      makeTextLabel(svg, "(30, 20)", xPosSideText, 360);
+      makeTextLabel(svg, "2nd Quartile", xPosSideText, quart3YPos);
+      makeTextLabelItalic(svg, "[58, 70)", xPosSideText, values3YPos);
 
-      makeTextLabel(svg, "1st Q", xPosSideText, 600);
-      makeTextLabel(svg, "(20, 0)", xPosSideText, 680);
+      makeTextLabel(svg, "1st Quartile", xPosSideText, quart4YPos);
+      makeTextLabelItalic(svg, "[41, 58)", xPosSideText, values4YPos);
 
       var imageArrays = [
-        [iconX,-250,6905],
-        [iconX,0,5288.25],
-        [iconX,250,3671.5],
-        [iconX,500,2054.75]
+        [iconX,-250,81],
+        [iconX,0,70],
+        [iconX,250,57.5],
+        [iconX,500,41]
       ]
 
       imageArrays.forEach(function(arr){
-        corruptionGeneratorKey(arr);
+        corruptionGeneratorKey(arr,svg_string);
       });
 
 
     }
 
-    function makeEducationScale(svg){
+    function makeEducationScale(svg_string){
 
-      var svg = d3.select(svg);
+      var svg = d3.select(svg_string);
 
       var textLabelVar = svg.append("text")
-      .text("Expenditure ($)")
-      .attr("x", "580")
+      .text("Education (%)")
+      .attr("x", "500")
       .attr("y", "-450")
       .attr("text-anchor", "left")
       .attr("alignment-baseline", "middle")
       .attr("font-size", "60")
       .attr("fill", "black");
 
-      makeRect(svg, 580, -400, iconRectWidth, iconRectHeight);
+      makeRect(svg, 500, -400, iconRectWidth, iconRectHeight);
 
-      makeTextLabel(svg, "4th Q", xPosSideText, -300);
-      makeTextLabel(svg, "(100, 50)", xPosSideText, -220);
+      makeTextLabel(svg, "4th Quartile", xPosSideText, quart1YPos);
+      makeTextLabelItalic(svg, "[30, 48]", xPosSideText, values1YPos);
 
-      makeTextLabel(svg, "3rd Q", xPosSideText, -20);
-      makeTextLabel(svg, "(50, 30)", xPosSideText, 50);
+      makeTextLabel(svg, "3rd Quartile", xPosSideText, quart2YPos);
+      makeTextLabelItalic(svg, "[26, 30)", xPosSideText, values2YPos);
 
-      makeTextLabel(svg, "2nd Q", xPosSideText, 280);
-      makeTextLabel(svg, "(30, 20)", xPosSideText, 360);
+      makeTextLabel(svg, "2nd Quartile", xPosSideText, quart3YPos);
+      makeTextLabelItalic(svg, "[18, 26)", xPosSideText, values3YPos);
 
-      makeTextLabel(svg, "1st Q", xPosSideText, 600);
-      makeTextLabel(svg, "(20, 0)", xPosSideText, 680);
+      makeTextLabel(svg, "1st Quartile", xPosSideText, quart4YPos);
+      makeTextLabelItalic(svg, "[10, 18)", xPosSideText, values4YPos);
 
       var imageArrays = [
-        [iconX,-250,6905],
-        [iconX,0,5288.25],
-        [iconX,250,3671.5],
-        [iconX,500,2054.75]
+        [iconX,-250,30.35],
+        [iconX,0,26.3],
+        [iconX,250,18.15],
+        [iconX,500,10.2]
       ]
 
       imageArrays.forEach(function(arr){
-        educationGeneratorKey(arr);
+        educationGeneratorKey(arr,svg_string);
       });
-
-
 
     }
 
-    function makePillsScale(svg){
 
-      var svg = d3.select(svg);
+
+    function makePillsScale(svg_string){
+
+      var svg = d3.select(svg_string);
 
       var textLabelVar = svg.append("text")
-      .text("Expenditure ($)")
-      .attr("x", "580")
+      .text("Usage (/1000 people)")
+      .attr("x", "500")
       .attr("y", "-450")
       .attr("text-anchor", "left")
       .attr("alignment-baseline", "middle")
       .attr("font-size", "60")
       .attr("fill", "black");
 
-      makeRect(svg, 580, -400, iconRectWidth, iconRectHeight);
+      makeRect(svg, 500, -400, iconRectWidth, iconRectHeight);
 
-      makeTextLabel(svg, "4th Q", xPosSideText, -300);
-      makeTextLabel(svg, "(100, 50)", xPosSideText, -220);
+      makeTextLabel(svg, "4th Quartile", xPosSideText, quart1YPos);
+      makeTextLabelItalic(svg, "[71, 130]", xPosSideText, values1YPos);
 
-      makeTextLabel(svg, "3rd Q", xPosSideText, -20);
-      makeTextLabel(svg, "(50, 30)", xPosSideText, 50);
+      makeTextLabel(svg, "3rd Quartile", xPosSideText, quart2YPos);
+      makeTextLabelItalic(svg, "[55, 71)", xPosSideText, values2YPos);
 
-      makeTextLabel(svg, "2nd Q", xPosSideText, 280);
-      makeTextLabel(svg, "(30, 20)", xPosSideText, 360);
+      makeTextLabel(svg, "2nd Quartile", xPosSideText, quart3YPos);
+      makeTextLabelItalic(svg, "[45, 55)", xPosSideText, values3YPos);
 
-      makeTextLabel(svg, "1st Q", xPosSideText, 600);
-      makeTextLabel(svg, "(20, 0)", xPosSideText, 680);
+      makeTextLabel(svg, "1st Quartile", xPosSideText, quart4YPos);
+      makeTextLabelItalic(svg, "[12, 45)", xPosSideText, values4YPos);
 
       var imageArrays = [
-        [iconX,-250,6905],
-        [iconX,0,5288.25],
-        [iconX,250,3671.5],
-        [iconX,500,2054.75]
+        [iconX,-250,70.65],
+        [iconX,0,55],
+        [iconX,250,44.75],
+        [iconX,500,12.3]
       ]
 
       imageArrays.forEach(function(arr){
-        pillGeneratorKey(arr);
+        pillGeneratorKey(arr,svg_string);
       });
 
 
 
     }
   
-
-</script>
-
-
-
-</body>
-</html>
